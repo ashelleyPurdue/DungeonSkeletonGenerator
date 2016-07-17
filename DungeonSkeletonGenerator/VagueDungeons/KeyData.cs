@@ -16,5 +16,10 @@ namespace DungeonSkeletonGenerator.VagueDungeons
             this.keyID = keyID;
             this.keyCount = keyCount;
         }
+
+        public override string ToString()
+        {
+            return "" + keyCount + " keys of type " + keyID;
+        }
     }
 }

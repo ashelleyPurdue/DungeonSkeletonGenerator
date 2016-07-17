@@ -29,10 +29,12 @@ namespace DungeonSkeletonGenerator
             a.ConnectTo(aa);
 
             VagueDungeonNode aaa = graph.CreateRoom();
+            aaa.keysContained.Add(new KeyData(0));
             aa.ConnectTo(aaa);
 
             VagueDungeonNode ab = graph.CreateRoom();
-            a.ConnectTo(ab);
+            VagueDungeonEdge aTOab = a.ConnectTo(ab);
+            aTOab.keysRequired.Add(new KeyData(0));
 
             //Visualize the test graph.
             new VagueDungeonViewer(graph).Show();

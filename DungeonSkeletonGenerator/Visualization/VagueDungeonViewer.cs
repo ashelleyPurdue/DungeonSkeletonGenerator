@@ -31,14 +31,48 @@ namespace DungeonSkeletonGenerator.Visualization
             //Add every node
             for (int i = 0; i < dungeon.roomCount; i++)
             {
-                graph.AddNode("" + i);
+                VagueDungeonNode room = dungeon.GetRoom(i);
+                Node node = new Node("" + i);
+
+                //List all keys in this room.
+                if (room.keysContained.Count == 0)
+                {
+                    node.LabelText = "empty";
+                }
+                else
+                {
+                    StringBuilder text = new StringBuilder();
+                    foreach (KeyData key in room.keysContained)
+                    {
+                        text.AppendLine(key.ToString());
+                    }
+
+                    node.LabelText = text.ToString();
+                }
+
+                //Add the node
+                graph.AddNode(node);
             }
 
             //Add every edge
             for (int i = 0; i < dungeon.edgeCount; i++)
             {
-                VagueDungeonEdge edge = dungeon.GetEdge(i);
-                graph.AddEdge("" + edge.from.roomID, "" + edge.to.roomID);
+                VagueDungeonEdge dngEdge = dungeon.GetEdge(i);
+                Edge edge = graph.AddEdge("" + dngEdge.from.roomID, "" + dngEdge.to.roomID);
+
+                //List all keys this edge requires
+                if (dngEdge.keysRequired.Count != 0)
+                {
+                    StringBuilder text = new StringBuilder();
+                    text.AppendLine("Lock requires: ");
+
+                    foreach (KeyData key in dngEdge.keysRequired)
+                    {
+                        text.AppendLine(key.ToString());
+                    }
+
+                    edge.LabelText = text.ToString();
+                }
             }
 
             //Return the viewer

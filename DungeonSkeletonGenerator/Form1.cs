@@ -21,7 +21,7 @@ namespace DungeonSkeletonGenerator
             InitializeComponent();
 
             //Test the detour generator
-            DetourDungeonGenerator generator = new DetourDungeonGenerator();
+            RecursiveLocksDungeonGenerator generator = new RecursiveLocksDungeonGenerator();
             generator.Generate();
 
             VagueDungeonViewer viewer = new VagueDungeonViewer(generator.GetDungeon());

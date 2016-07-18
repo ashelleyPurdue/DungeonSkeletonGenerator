@@ -35,7 +35,7 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
         protected override void GenerateInternal()
         {
             //Roll a number of keys
-            int keysToCreate = randGen.Next(config.minKeys, config.maxKeys);
+            keysToCreate = randGen.Next(config.minKeys, config.maxKeys);
 
             //Create a starting room
             dungeon.startRoom = dungeon.CreateRoom();
@@ -72,19 +72,24 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
             int chainLength = randGen.Next(config.minChainLength, config.maxChainLength) - 1;
             VagueDungeonNode roomBeforeKey = CreateChain(startingRoom, chainLength);
 
-            //Put the key in the keyroom
-            VagueDungeonNode keyRoom = dungeon.CreateRoom();
-            VagueDungeonEdge keyRoomDoor = roomBeforeKey.ConnectTo(keyRoom);
-
-            keyRoom.keysContained.Add(lockInfo);
-
             //Try to go recursive
             if (    keysCreated < keysToCreate
                     && recursionDepth < config.maxRecursionDepth
                     && randGen.NextDouble() < config.recursionChance
                )
             {
-                //TODO: Go recursive
+                //Go recursive to create the key room.
+                Console.WriteLine("Went recursive");
+                VagueDungeonNode keyRoom = GenerateBranch(roomBeforeKey, recursionDepth + 1);
+                keyRoom.keysContained.Add(lockInfo);
+            }
+            else
+            {
+                //Put the key in the keyroom
+                VagueDungeonNode keyRoom = dungeon.CreateRoom();
+                VagueDungeonEdge keyRoomDoor = roomBeforeKey.ConnectTo(keyRoom);
+
+                keyRoom.keysContained.Add(lockInfo);
             }
 
             return roomBehindLock;

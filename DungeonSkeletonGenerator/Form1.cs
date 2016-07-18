@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using DungeonSkeletonGenerator.VagueDungeons;
+using DungeonSkeletonGenerator.VagueDungeonGenerators;
 using DungeonSkeletonGenerator.Visualization;
 
 namespace DungeonSkeletonGenerator
@@ -19,25 +20,12 @@ namespace DungeonSkeletonGenerator
         {
             InitializeComponent();
 
-            //Build a test graph
-            VagueDungeonGraph graph = new VagueDungeonGraph();
+            //Test the detour generator
+            DetourDungeonGenerator generator = new DetourDungeonGenerator();
+            generator.Generate();
 
-            VagueDungeonNode a = graph.CreateRoom();
-            graph.startRoom = a;
-
-            VagueDungeonNode aa = graph.CreateRoom();
-            a.ConnectTo(aa);
-
-            VagueDungeonNode aaa = graph.CreateRoom();
-            aaa.keysContained.Add(new KeyData(0));
-            aa.ConnectTo(aaa);
-
-            VagueDungeonNode ab = graph.CreateRoom();
-            VagueDungeonEdge aTOab = a.ConnectTo(ab);
-            aTOab.keysRequired.Add(new KeyData(0));
-
-            //Visualize the test graph.
-            new VagueDungeonViewer(graph).Show();
+            VagueDungeonViewer viewer = new VagueDungeonViewer(generator.GetDungeon());
+            viewer.Show();
         }
 
         

@@ -8,21 +8,17 @@ using DungeonSkeletonGenerator.VagueDungeons;
 
 namespace DungeonSkeletonGenerator.VagueDungeonGenerators
 {
-    public class DetourDungeonGenerator
+    public class DetourDungeonGenerator : AbstractVagueDungeonGenerator
     {
 
         //Fields
-
-        public bool generated { get; private set; }
 
         private int locksToCreate;
         private int locksCreated = 0;
 
         private DetourDungeonConfig config;
-        private Random randGen;
-
-        private VagueDungeonGraph dungeon = new VagueDungeonGraph();
         private VagueDungeonNode currentRoom;
+
 
         //Constructors
 
@@ -30,35 +26,19 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
         {
             randGen = new Random();
             config = new DetourDungeonConfig();
-            generated = false;
         }
 
         public DetourDungeonGenerator(int seed, DetourDungeonConfig config)
         {
             //Initialize
             randGen = new Random(seed);
-            generated = false;
             this.config = config;
         }
 
 
         //Misc methods
 
-        public VagueDungeonGraph GetDungeon()
-        {
-            //Returns the completed dungeon if generated, or null if not finished.
-
-            if (generated)
-            {
-                return dungeon;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public void Generate()
+        protected override void GenerateInternal()
         {
             //Generates the dungeon.
 
@@ -95,7 +75,6 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
 
             //Put the boss room right here.  This is the end of the dungeon.
             dungeon.bossRoom = currentRoom;
-            generated = true;
         }
 
         private void GenerateChain(int chainLength)

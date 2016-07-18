@@ -24,14 +24,11 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
 
         public DetourDungeonGenerator()
         {
-            randGen = new Random();
             config = new DetourDungeonConfig();
         }
 
-        public DetourDungeonGenerator(int seed, DetourDungeonConfig config)
+        public DetourDungeonGenerator(DetourDungeonConfig config)
         {
-            //Initialize
-            randGen = new Random(seed);
             this.config = config;
         }
 

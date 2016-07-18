@@ -31,6 +31,15 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
 
         public void Generate()
         {
+            randGen = new Random();
+            GenerateInternal();
+            generated = true;
+        }
+
+        public void Generate(int seed)
+        {
+            //Generates a new dungeon, but with a specified seed
+            randGen = new Random(seed);
             GenerateInternal();
             generated = true;
         }

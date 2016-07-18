@@ -12,7 +12,7 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
     {
         protected override void GenerateInternal()
         {
-        
+            
         }
     }
 }

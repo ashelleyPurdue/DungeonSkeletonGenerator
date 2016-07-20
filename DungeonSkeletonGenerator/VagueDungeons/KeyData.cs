@@ -19,7 +19,20 @@ namespace DungeonSkeletonGenerator.VagueDungeons
 
         public override string ToString()
         {
-            return "" + keyCount + " keys of type " + keyID;
+            //Determine if plural
+            string plural;
+            if (keyCount == 1)
+            {
+                plural = "key";
+            }
+            else
+            {
+                plural = "keys";
+            }
+
+            //Put it together
+
+            return "" + keyCount + " " + ((KeyColor)keyID).ToString() + " " + plural;
         }
     }
 }

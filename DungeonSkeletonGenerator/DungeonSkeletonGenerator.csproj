@@ -65,6 +65,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VagueDungeonGenerators\AbstractVagueDungeonGenerator.cs" />
     <Compile Include="VagueDungeonGenerators\DetourDungeonGenerator.cs" />
+    <Compile Include="VagueDungeons\KeyColor.cs" />
     <Compile Include="VagueDungeonGenerators\RecursiveLocksDungeonGenerator.cs" />
     <Compile Include="VagueDungeons\KeyData.cs" />
     <Compile Include="VagueDungeons\VagueDungeonEdge.cs" />

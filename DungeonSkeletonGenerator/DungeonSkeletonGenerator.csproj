@@ -72,6 +72,7 @@
     <Compile Include="VagueDungeons\VagueDungeonEdge.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\AbstractCommand.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\CommandType.cs" />
+    <Compile Include="VagueDungeons\VagueDungeonExplorer\UnlockEdgeCommand.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\UseEdgeCommand.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\VagueDungeonExplorer.cs" />
     <Compile Include="VagueDungeons\VagueDungeonGraph.cs" />

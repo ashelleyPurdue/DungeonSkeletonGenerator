@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
+{
+    public partial class VagueDungeonExplorer
+    {
+        public class UnlockEdgeCommand : AbstractCommand
+        {
+            private VagueDungeonEdge edge;
+
+            public UnlockEdgeCommand(VagueDungeonEdge edge, VagueDungeonExplorer parent) : base(parent)
+            {
+                this.edge = edge;
+            }
+
+            public override void Undo()
+            {
+                //Add all of the keys back.
+                foreach (KeyData kd in edge.keysRequired)
+                {
+                    parent.keyInventory[kd.keyID] += kd.keyCount;
+                }
+
+                //Mark the edge as locked again
+                parent.edgesUnlocked[edge] = false;
+            }
+        }
+    }
+}

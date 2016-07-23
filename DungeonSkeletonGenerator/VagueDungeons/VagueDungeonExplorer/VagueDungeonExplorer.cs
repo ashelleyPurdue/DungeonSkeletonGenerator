@@ -110,6 +110,9 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
             //Mark it as unlocked
             edgesUnlocked[edge] = true;
 
+            //Add to the undo history
+            undoStack.Push(new UnlockEdgeCommand(edge, this));
+
             //Return successful
             return true;
         }

@@ -70,9 +70,36 @@ namespace DungeonSkeletonGenerator.VagueDungeons
             return edgeList;
         }
 
+        public void UseEdge(VagueDungeonEdge edge)
+        {
+            //Throw an error if not usable
+            if (!CanUseEdge(edge))
+            {
+                throw new CantUseEdgeException(edge, this);
+            }
+
+            //TODO: Add to room history
+
+            //Use the edge
+            if (currentRoom == edge.from)
+            {
+                currentRoom = edge.to;
+            }
+            else
+            {
+                currentRoom = edge.from;
+            }
+        }
+
         private bool CanUseEdge(VagueDungeonEdge edge)
         {
             //Returns if the explorer can use the given neighboring edge.
+
+            //Return false if the edge isn't a neighbor
+            if (edge.from != currentRoom && edge.to != currentRoom)
+            {
+                return false;
+            }
 
             //Return false if the edge isn't bidirectional and we're not in the right spot
             if (!edge.bidirectional && currentRoom != edge.from)
@@ -87,6 +114,18 @@ namespace DungeonSkeletonGenerator.VagueDungeons
             }
 
             return true;
+        }
+    }
+
+    public class CantUseEdgeException : Exception
+    {
+        public VagueDungeonEdge edge;
+        public VagueDungeonExplorer explorer;
+
+        public CantUseEdgeException(VagueDungeonEdge edge, VagueDungeonExplorer explorer)
+        {
+            this.edge = edge;
+            this.explorer = explorer;
         }
     }
 }

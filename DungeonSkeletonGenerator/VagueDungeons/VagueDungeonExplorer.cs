@@ -51,6 +51,52 @@ namespace DungeonSkeletonGenerator.VagueDungeons
             return edgesUnlocked[edge];
         }
 
+        public bool HasEnoughKeys(VagueDungeonEdge edge)
+        {
+            //Returns if we have enough keys to unlock the given edge.
+
+            foreach (KeyData keyData in edge.keysRequired)
+            {
+                if (keyInventory[keyData.keyID] < keyData.keyCount)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public bool TryUnlock(VagueDungeonEdge edge)
+        {
+            //Tries to unlock a door.
+            //Returns true if successful or if already unlocked, false if otherwise.
+            //Fails if not enough keys, or if already unlocked
+
+            //If it's already unlocked, do nothing and return true.
+            if (EdgeUnlocked(edge))
+            {
+                return true;
+            }
+
+            //If not enough keys, do nothing and return false.
+            if (!HasEnoughKeys(edge))
+            {
+                return false;
+            }
+
+            //Remove the keys from the inventory
+            foreach (KeyData keyData in edge.keysRequired)
+            {
+                keyInventory[keyData.keyID] -= keyData.keyCount;
+            }
+
+            //Mark it as unlocked
+            edgesUnlocked[edge] = true;
+
+            //Return successful
+            return true;
+        }
+
         public List<VagueDungeonEdge> UseableNeighboringEdges()
         {
             //Returns all of the neighboring edges that can be used.

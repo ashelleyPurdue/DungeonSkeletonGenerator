@@ -11,6 +11,8 @@ namespace DungeonSkeletonGenerator.VagueDungeons
         public VagueDungeonGraph dungeon { get; private set; }
         public VagueDungeonNode currentRoom { get; private set; }
 
+        private Dictionary<int, int> keyInventory = new Dictionary<int, int>();
+
         public VagueDungeonExplorer(VagueDungeonGraph dungeon)
         {
             this.dungeon = dungeon;

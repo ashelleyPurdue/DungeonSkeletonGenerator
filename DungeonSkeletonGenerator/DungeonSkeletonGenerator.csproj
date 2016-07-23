@@ -70,6 +70,8 @@
     <Compile Include="VagueDungeonGenerators\RecursiveLocksDungeonGenerator.cs" />
     <Compile Include="VagueDungeons\KeyData.cs" />
     <Compile Include="VagueDungeons\VagueDungeonEdge.cs" />
+    <Compile Include="VagueDungeons\VagueDungeonExplorer\AbstractCommand.cs" />
+    <Compile Include="VagueDungeons\VagueDungeonExplorer\CommandType.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\VagueDungeonExplorer.cs" />
     <Compile Include="VagueDungeons\VagueDungeonGraph.cs" />
     <Compile Include="VagueDungeons\VagueDungeonNode.cs" />

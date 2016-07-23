@@ -9,7 +9,7 @@ using DungeonSkeletonGenerator.VagueDungeons;
 
 namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 {
-    public class VagueDungeonExplorer
+    public partial class VagueDungeonExplorer
     {
         public VagueDungeonGraph dungeon { get; private set; }
         public VagueDungeonNode currentRoom { get; private set; }
@@ -19,11 +19,25 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
         private DefaultDictionary<VagueDungeonEdge, bool> edgesUnlocked = new DefaultDictionary<VagueDungeonEdge, bool>(false);
         private DefaultDictionary<VagueDungeonNode, bool> keysLooted = new DefaultDictionary<VagueDungeonNode, bool>(false);
 
+        private Stack<AbstractCommand> undoStack = new Stack<AbstractCommand>();
 
         public VagueDungeonExplorer(VagueDungeonGraph dungeon)
         {
             this.dungeon = dungeon;
             currentRoom = dungeon.startRoom;
+        }
+
+
+        //Misc methods
+
+        public void Undo()
+        {
+            //Undoes the last action, as if it never happened.
+
+            if (undoStack.Count > 0)
+            {
+                undoStack.Pop().Undo();
+            }
         }
 
 

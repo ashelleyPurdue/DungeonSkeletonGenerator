@@ -16,6 +16,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons
         private DefaultDictionary<int, int> keyInventory = new DefaultDictionary<int, int>(0);
 
         private DefaultDictionary<VagueDungeonEdge, bool> edgesUnlocked = new DefaultDictionary<VagueDungeonEdge, bool>(false);
+        private DefaultDictionary<VagueDungeonNode, bool> keysLooted = new DefaultDictionary<VagueDungeonNode, bool>(false);
 
         public VagueDungeonExplorer(VagueDungeonGraph dungeon)
         {
@@ -24,7 +25,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons
         }
 
 
-        //Misc methods
+        //Key/unlocking methods
 
         public bool EdgeUnlocked(VagueDungeonEdge edge)
         {
@@ -96,6 +97,28 @@ namespace DungeonSkeletonGenerator.VagueDungeons
             //Return successful
             return true;
         }
+
+        public void LootKeys()
+        {
+            //Loots the keys in the current room.
+
+            //Don't go on if already looted.
+            if (keysLooted[currentRoom])
+            {
+                return;
+            }
+
+            //Loot the keys
+            foreach (KeyData kd in currentRoom.keysContained)
+            {
+                keyInventory[kd.keyID] += kd.keyCount;
+            }
+
+            keysLooted[currentRoom] = true;
+        }
+
+
+        //Edge/movement methods
 
         public List<VagueDungeonEdge> UseableNeighboringEdges()
         {

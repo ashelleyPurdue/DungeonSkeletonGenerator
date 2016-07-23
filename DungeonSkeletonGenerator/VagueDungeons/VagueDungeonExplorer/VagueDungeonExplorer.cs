@@ -134,6 +134,9 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
             }
 
             keysLooted[currentRoom] = true;
+
+            //Save the undo history
+            undoStack.Push(new LootKeysCommand(currentRoom, this));
         }
 
 

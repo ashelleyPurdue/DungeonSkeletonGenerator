@@ -165,6 +165,9 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 
             //TODO: Add to room history
 
+            //Add to undo history
+            undoStack.Push(new UseEdgeCommand(currentRoom, this));
+
             //Use the edge
             if (currentRoom == edge.from)
             {

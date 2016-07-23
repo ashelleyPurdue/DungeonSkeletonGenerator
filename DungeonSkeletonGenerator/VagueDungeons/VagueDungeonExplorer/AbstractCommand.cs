@@ -10,7 +10,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
     {
         public abstract class AbstractCommand
         {
-            private VagueDungeonExplorer parent;
+            protected VagueDungeonExplorer parent;
 
             public AbstractCommand(VagueDungeonExplorer parent)
             {

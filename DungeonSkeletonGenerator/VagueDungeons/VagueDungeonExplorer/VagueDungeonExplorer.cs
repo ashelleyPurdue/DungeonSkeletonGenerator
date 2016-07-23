@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 using DungeonSkeletonGenerator.Utils;
+using DungeonSkeletonGenerator.VagueDungeons;
 
-namespace DungeonSkeletonGenerator.VagueDungeons
+namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 {
     public class VagueDungeonExplorer
     {
@@ -17,6 +18,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons
 
         private DefaultDictionary<VagueDungeonEdge, bool> edgesUnlocked = new DefaultDictionary<VagueDungeonEdge, bool>(false);
         private DefaultDictionary<VagueDungeonNode, bool> keysLooted = new DefaultDictionary<VagueDungeonNode, bool>(false);
+
 
         public VagueDungeonExplorer(VagueDungeonGraph dungeon)
         {

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using DungeonSkeletonGenerator.VagueDungeons;
+using DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer;
 using DungeonSkeletonGenerator.VagueDungeonGenerators;
 using DungeonSkeletonGenerator.Visualization;
 
@@ -27,8 +28,14 @@ namespace DungeonSkeletonGenerator
 
             VagueDungeonViewer viewer = new VagueDungeonViewer(generator.GetDungeon());
             viewer.Show();
-        }
 
-        
+            //Generate a report on all rooms that are reachable without key-hunting.
+            Explorer explorer = new Explorer(generator.GetDungeon());
+            for (int i = 0; i < generator.GetDungeon().roomCount; i++)
+            {
+                Console.WriteLine("Room " + i + " reachable: " + VagueDungeonSolver.CanReachRoom(explorer, generator.GetDungeon().GetRoom(i)));
+            }
+
+        }
     }
 }

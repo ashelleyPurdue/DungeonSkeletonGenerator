@@ -23,12 +23,10 @@ namespace DungeonSkeletonGenerator
 
             //Create a test dungeon with the given seed.
             RecursiveLocksGeneratorConfig config = new RecursiveLocksGeneratorConfig();
+            config.recursionChance = 0.7;
+            config.maxRecursionDepth = 3;
             RecursiveLocksDungeonGenerator generator = new RecursiveLocksDungeonGenerator();
-            generator.Generate(1234);
-
-            //Create a loop!
-            //4->1
-            generator.GetDungeon().GetRoom(4).ConnectTo(generator.GetDungeon().GetRoom(1));
+            generator.Generate();
 
             VagueDungeonViewer viewer = new VagueDungeonViewer(generator.GetDungeon());
             viewer.Show();

@@ -11,18 +11,41 @@ namespace DungeonSkeletonGenerator.VagueDungeons
         public DungeonRoom from { get; private set; }
         public DungeonRoom to { get; private set; }
 
-        public bool bidirectional;
-        public bool isShortcut;
+        public bool bidirectional
+        {
+            get { return type == EdgeType.bidirectional; }
+        }
+        public EdgeType type;
 
         public List<KeyData> keysRequired = new List<KeyData>();
 
-        public DungeonEdge(DungeonRoom from, DungeonRoom to, bool bidirectional = true, bool isShortcut = false)
+        public DungeonEdge(DungeonRoom from, DungeonRoom to, bool bidirectional)
         {
             this.from = from;
             this.to = to;
-
-            this.bidirectional = bidirectional;
-            this.isShortcut = isShortcut;
+            
+            if (bidirectional)
+            {
+                type = EdgeType.bidirectional;
+            }
+            else
+            {
+                type = EdgeType.oneWay;
+            }
         }
+
+        public DungeonEdge(DungeonRoom from, DungeonRoom to, EdgeType type = EdgeType.bidirectional)
+        {
+            this.from = from;
+            this.to = to;
+            this.type = type;
+        }
+    }
+
+    public enum EdgeType
+    {
+        bidirectional,
+        oneWay,
+        shortcut
     }
 }

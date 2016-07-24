@@ -66,6 +66,7 @@
     <Compile Include="Utils\DefaultDictionary.cs" />
     <Compile Include="VagueDungeonGenerators\AbstractDungeonGenerator.cs" />
     <Compile Include="VagueDungeonGenerators\DetourDungeonGenerator.cs" />
+    <Compile Include="VagueDungeonGenerators\MaximumBacktrackingGenerator.cs" />
     <Compile Include="VagueDungeons\KeyColor.cs" />
     <Compile Include="VagueDungeonGenerators\RecursiveLocksDungeonGenerator.cs" />
     <Compile Include="VagueDungeons\KeyData.cs" />

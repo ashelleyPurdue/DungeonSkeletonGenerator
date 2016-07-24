@@ -37,7 +37,7 @@ namespace DungeonSkeletonGenerator
             Explorer explorer = new Explorer(generator.GetDungeon());
             for (int i = 0; i < generator.GetDungeon().roomCount; i++)
             {
-                Console.WriteLine("Room " + i + " reachable: " + VagueDungeonSolver.CanReachRoom(explorer, generator.GetDungeon().GetRoom(i)));
+                Console.WriteLine("Room " + i + " reachable: " + DungeonSolver.CanReachRoom(explorer, generator.GetDungeon().GetRoom(i)));
             }
 
         }

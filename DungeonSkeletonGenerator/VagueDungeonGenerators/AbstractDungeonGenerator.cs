@@ -8,14 +8,14 @@ using DungeonSkeletonGenerator.VagueDungeons;
 
 namespace DungeonSkeletonGenerator.VagueDungeonGenerators
 {
-    public abstract class AbstractVagueDungeonGenerator
+    public abstract class AbstractDungeonGenerator
     {
         public bool generated { get; protected set; } = false;
 
-        protected VagueDungeonGraph dungeon = new VagueDungeonGraph();
+        protected Dungeon dungeon = new Dungeon();
         protected Random randGen;
 
-        public VagueDungeonGraph GetDungeon()
+        public Dungeon GetDungeon()
         {
             //Returns the completed dungeon if generated, or null if not finished.
 

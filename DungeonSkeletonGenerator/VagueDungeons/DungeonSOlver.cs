@@ -10,18 +10,18 @@ using DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer;
 
 namespace DungeonSkeletonGenerator.VagueDungeons
 {
-    public class VagueDungeonSolver
+    public class DungeonSolver
     {
         //Static methods
-        public static bool CanReachRoom(Explorer explorer, VagueDungeonNode room)
+        public static bool CanReachRoom(Explorer explorer, DungeonRoom room)
         {
             //Returns if the explorer can reach the given room in its current state, without key-hunting or unlocking doors.
 
-            DefaultDictionary<VagueDungeonNode, bool> visited = new DefaultDictionary<VagueDungeonNode, bool>(false);
+            DefaultDictionary<DungeonRoom, bool> visited = new DefaultDictionary<DungeonRoom, bool>(false);
             return DFSForRoom(explorer, room, visited);
         }
 
-        private static bool DFSForRoom(Explorer explorer, VagueDungeonNode room, DefaultDictionary<VagueDungeonNode, bool> visited)
+        private static bool DFSForRoom(Explorer explorer, DungeonRoom room, DefaultDictionary<DungeonRoom, bool> visited)
         {
             //Recursively searches all neighbors to find the room.
 
@@ -43,10 +43,10 @@ namespace DungeonSkeletonGenerator.VagueDungeons
             //Console.WriteLine("visited[" + explorer.currentRoom.roomID + "] = " + visited[explorer.currentRoom]);
 
             //Search all neighbors
-            List<VagueDungeonEdge> usableEdges = explorer.UseableNeighboringEdges();
+            List<DungeonEdge> usableEdges = explorer.UseableNeighboringEdges();
             //Console.WriteLine("" + usableEdges.Count + " usable edges");
 
-            foreach (VagueDungeonEdge edge in usableEdges)
+            foreach (DungeonEdge edge in usableEdges)
             {
                 //Use the edge
                 explorer.UseEdge(edge);

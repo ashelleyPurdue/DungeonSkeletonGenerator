@@ -11,9 +11,9 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 
         public class UseEdgeCommand : Explorer.AbstractCommand
         {
-            private VagueDungeonNode previousNode;
+            private DungeonRoom previousNode;
 
-            public UseEdgeCommand(VagueDungeonNode previousNode, Explorer parent) : base(parent)
+            public UseEdgeCommand(DungeonRoom previousNode, Explorer parent) : base(parent)
             {
                 this.previousNode = previousNode;
             }

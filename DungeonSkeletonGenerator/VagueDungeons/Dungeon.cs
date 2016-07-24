@@ -6,37 +6,37 @@ using System.Threading.Tasks;
 
 namespace DungeonSkeletonGenerator.VagueDungeons
 {
-    public class VagueDungeonGraph
+    public class Dungeon
     {
         //Fields
 
-        public VagueDungeonNode startRoom;
-        public VagueDungeonNode bossRoom;
+        public DungeonRoom startRoom;
+        public DungeonRoom bossRoom;
 
         public int roomCount { get { return rooms.Count; } }
-        private List<VagueDungeonNode> rooms = new List<VagueDungeonNode>();
+        private List<DungeonRoom> rooms = new List<DungeonRoom>();
 
         public int edgeCount { get { return edges.Count; } }
-        private List<VagueDungeonEdge> edges = new List<VagueDungeonEdge>();
+        private List<DungeonEdge> edges = new List<DungeonEdge>();
 
 
         //Methods
 
-        public VagueDungeonNode GetRoom(int i)
+        public DungeonRoom GetRoom(int i)
         {
             return rooms[i];
         }
 
-        public VagueDungeonEdge GetEdge(int i)
+        public DungeonEdge GetEdge(int i)
         {
             return edges[i];
         }
 
-        public VagueDungeonNode CreateRoom()
+        public DungeonRoom CreateRoom()
         {
             //Creates a room and returns it.
 
-            VagueDungeonNode room = new VagueDungeonNode(this, roomCount);
+            DungeonRoom room = new DungeonRoom(this, roomCount);
             rooms.Add(room);
 
             return room;
@@ -45,12 +45,12 @@ namespace DungeonSkeletonGenerator.VagueDungeons
 
         //Internal methods -- DO NOT USE THESE OUTSIDE OF THE VagueDungeons FOLDER!!!
 
-        internal void AddEdge(VagueDungeonEdge edge)
+        internal void AddEdge(DungeonEdge edge)
         {
             edges.Add(edge);
         }
 
-        internal void RemoveEdge(VagueDungeonEdge edge)
+        internal void RemoveEdge(DungeonEdge edge)
         {
             edges.Remove(edge);
         }

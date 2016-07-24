@@ -64,21 +64,21 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\DefaultDictionary.cs" />
-    <Compile Include="VagueDungeonGenerators\AbstractVagueDungeonGenerator.cs" />
+    <Compile Include="VagueDungeonGenerators\AbstractDungeonGenerator.cs" />
     <Compile Include="VagueDungeonGenerators\DetourDungeonGenerator.cs" />
     <Compile Include="VagueDungeons\KeyColor.cs" />
     <Compile Include="VagueDungeonGenerators\RecursiveLocksDungeonGenerator.cs" />
     <Compile Include="VagueDungeons\KeyData.cs" />
-    <Compile Include="VagueDungeons\VagueDungeonEdge.cs" />
+    <Compile Include="VagueDungeons\DungeonEdge.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\AbstractCommand.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\CommandType.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\LootKeysCommand.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\UnlockEdgeCommand.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\UseEdgeCommand.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\Explorer.cs" />
-    <Compile Include="VagueDungeons\VagueDungeonGraph.cs" />
-    <Compile Include="VagueDungeons\VagueDungeonNode.cs" />
-    <Compile Include="VagueDungeons\VagueDungeonSolver.cs" />
+    <Compile Include="VagueDungeons\Dungeon.cs" />
+    <Compile Include="VagueDungeons\DungeonRoom.cs" />
+    <Compile Include="VagueDungeons\DungeonSolver.cs" />
     <Compile Include="Visualization\VagueDungeonViewer.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace DungeonSkeletonGenerator.VagueDungeons
 {
-    public class VagueDungeonNode
+    public class DungeonRoom
     {
         //Fields
-        public VagueDungeonGraph dungeon { get; private set; }
+        public Dungeon dungeon { get; private set; }
         public int roomID { get; private set; }
 
         public List<KeyData> keysContained = new List<KeyData>(); 
 
-        protected List<VagueDungeonEdge> edges = new List<VagueDungeonEdge>();
+        protected List<DungeonEdge> edges = new List<DungeonEdge>();
 
 
         //Constructors
         //This constructor should only be called in VagueDungeonGraph.cs!!!
-        internal VagueDungeonNode(VagueDungeonGraph dungeon, int id)
+        internal DungeonRoom(Dungeon dungeon, int id)
         {
             this.dungeon = dungeon;
             this.roomID = id;
@@ -28,7 +28,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons
 
         //Methods
 
-        public VagueDungeonEdge GetEdge(int i)
+        public DungeonEdge GetEdge(int i)
         {
             return edges[i];
         }
@@ -38,13 +38,13 @@ namespace DungeonSkeletonGenerator.VagueDungeons
             return edges.Count;
         }
 
-        public VagueDungeonEdge ConnectTo(VagueDungeonNode other, bool bidirectional = true)
+        public DungeonEdge ConnectTo(DungeonRoom other, bool bidirectional = true)
         {
             //Creates an edge from this node to the other.
             //The edge is added to both nodes' edge list
             //Returns the created edge
 
-            VagueDungeonEdge edge = new VagueDungeonEdge(this, other, bidirectional);
+            DungeonEdge edge = new DungeonEdge(this, other, bidirectional);
             this.edges.Add(edge);
             other.edges.Add(edge);
             dungeon.AddEdge(edge);
@@ -52,7 +52,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons
             return edge;
         }
 
-        public void DisconnectEdge(VagueDungeonEdge edge)
+        public void DisconnectEdge(DungeonEdge edge)
         {
             //Removes the given edge from both nodes' edge lists, if it exists.
 
@@ -81,10 +81,10 @@ namespace DungeonSkeletonGenerator.VagueDungeons
 
     class EdgeNotFoundException : Exception
     {
-        public readonly VagueDungeonNode node;
-        public readonly VagueDungeonEdge edge;
+        public readonly DungeonRoom node;
+        public readonly DungeonEdge edge;
 
-        public EdgeNotFoundException(VagueDungeonNode node, VagueDungeonEdge edge)
+        public EdgeNotFoundException(DungeonRoom node, DungeonEdge edge)
         {
             this.node = node;
             this.edge = edge;

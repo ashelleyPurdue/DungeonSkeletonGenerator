@@ -10,9 +10,9 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
     {
         public class UnlockEdgeCommand : AbstractCommand
         {
-            private VagueDungeonEdge edge;
+            private DungeonEdge edge;
 
-            public UnlockEdgeCommand(VagueDungeonEdge edge, Explorer parent) : base(parent)
+            public UnlockEdgeCommand(DungeonEdge edge, Explorer parent) : base(parent)
             {
                 this.edge = edge;
             }

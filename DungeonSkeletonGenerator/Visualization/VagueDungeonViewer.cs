@@ -17,13 +17,13 @@ namespace DungeonSkeletonGenerator.Visualization
 {
     public partial class VagueDungeonViewer : Form
     {
-        public VagueDungeonViewer(VagueDungeonGraph dungeon)
+        public VagueDungeonViewer(Dungeon dungeon)
         {
             InitializeComponent();
             this.Controls.Add(CreateViewer(dungeon));
         }
 
-        private GViewer CreateViewer(VagueDungeonGraph dungeon)
+        private GViewer CreateViewer(Dungeon dungeon)
         {
             Graph graph = new Graph("graph");
             GViewer viewer = new GViewer();
@@ -31,7 +31,7 @@ namespace DungeonSkeletonGenerator.Visualization
             //Add every node
             for (int i = 0; i < dungeon.roomCount; i++)
             {
-                VagueDungeonNode room = dungeon.GetRoom(i);
+                DungeonRoom room = dungeon.GetRoom(i);
                 StringBuilder text = new StringBuilder();
                 Node node = new Node("" + i);
 
@@ -59,7 +59,7 @@ namespace DungeonSkeletonGenerator.Visualization
             //Add every edge
             for (int i = 0; i < dungeon.edgeCount; i++)
             {
-                VagueDungeonEdge dngEdge = dungeon.GetEdge(i);
+                DungeonEdge dngEdge = dungeon.GetEdge(i);
                 Edge edge = graph.AddEdge("" + dngEdge.from.roomID, "" + dngEdge.to.roomID);
 
                 //List all keys this edge requires

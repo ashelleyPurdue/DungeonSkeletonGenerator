@@ -12,17 +12,17 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 {
     public partial class Explorer
     {
-        public VagueDungeonGraph dungeon { get; private set; }
-        public VagueDungeonNode currentRoom { get; private set; }
+        public Dungeon dungeon { get; private set; }
+        public DungeonRoom currentRoom { get; private set; }
 
         private DefaultDictionary<int, int> keyInventory = new DefaultDictionary<int, int>(0);
 
-        private DefaultDictionary<VagueDungeonEdge, bool> edgesUnlocked = new DefaultDictionary<VagueDungeonEdge, bool>(false);
-        private DefaultDictionary<VagueDungeonNode, bool> keysLooted = new DefaultDictionary<VagueDungeonNode, bool>(false);
+        private DefaultDictionary<DungeonEdge, bool> edgesUnlocked = new DefaultDictionary<DungeonEdge, bool>(false);
+        private DefaultDictionary<DungeonRoom, bool> keysLooted = new DefaultDictionary<DungeonRoom, bool>(false);
 
         private Stack<AbstractCommand> undoStack = new Stack<AbstractCommand>();
 
-        public Explorer(VagueDungeonGraph dungeon)
+        public Explorer(Dungeon dungeon)
         {
             this.dungeon = dungeon;
             currentRoom = dungeon.startRoom;
@@ -44,7 +44,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 
         //Key/unlocking methods
         
-        public bool EdgeUnlocked(VagueDungeonEdge edge)
+        public bool EdgeUnlocked(DungeonEdge edge)
         {
             //Returns if the given edge has been unlocked.
             //If the edge was never locked in the first place, returns true.
@@ -69,7 +69,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
             return edgesUnlocked[edge];
         }
 
-        public bool HasEnoughKeys(VagueDungeonEdge edge)
+        public bool HasEnoughKeys(DungeonEdge edge)
         {
             //Returns if we have enough keys to unlock the given edge.
 
@@ -84,7 +84,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
             return true;
         }
 
-        public bool TryUnlock(VagueDungeonEdge edge)
+        public bool TryUnlock(DungeonEdge edge)
         {
             //Tries to unlock a door.
             //Returns true if successful or if already unlocked, false if otherwise.
@@ -143,18 +143,18 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 
         //Edge/movement methods
 
-        public List<VagueDungeonEdge> UseableNeighboringEdges()
+        public List<DungeonEdge> UseableNeighboringEdges()
         {
             //Returns all of the neighboring edges that can be used.
 
             //Console.WriteLine("Getting usable edges on room " + currentRoom.roomID);
 
-            List<VagueDungeonEdge> edgeList = new List<VagueDungeonEdge>();
+            List<DungeonEdge> edgeList = new List<DungeonEdge>();
 
             for (int i = 0; i < currentRoom.GetEdgeCount(); i++)
             {
                 //Add it to the list if it's useable
-                VagueDungeonEdge edge = currentRoom.GetEdge(i);
+                DungeonEdge edge = currentRoom.GetEdge(i);
                 if (CanUseEdge(edge))
                 {
                     edgeList.Add(edge);
@@ -166,7 +166,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
             return edgeList;
         }
 
-        public void UseEdge(VagueDungeonEdge edge)
+        public void UseEdge(DungeonEdge edge)
         {
             //Throw an error if not usable
             if (!CanUseEdge(edge))
@@ -190,7 +190,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
             }
         }
 
-        private bool CanUseEdge(VagueDungeonEdge edge)
+        private bool CanUseEdge(DungeonEdge edge)
         {
             //Returns if the explorer can use the given neighboring edge.
 
@@ -224,10 +224,10 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 
     public class CantUseEdgeException : Exception
     {
-        public VagueDungeonEdge edge;
+        public DungeonEdge edge;
         public Explorer explorer;
 
-        public CantUseEdgeException(VagueDungeonEdge edge, Explorer explorer)
+        public CantUseEdgeException(DungeonEdge edge, Explorer explorer)
         {
             this.edge = edge;
             this.explorer = explorer;

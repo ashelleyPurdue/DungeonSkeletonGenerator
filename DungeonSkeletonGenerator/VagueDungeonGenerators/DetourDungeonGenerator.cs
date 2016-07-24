@@ -8,7 +8,7 @@ using DungeonSkeletonGenerator.VagueDungeons;
 
 namespace DungeonSkeletonGenerator.VagueDungeonGenerators
 {
-    public class DetourDungeonGenerator : AbstractVagueDungeonGenerator
+    public class DetourDungeonGenerator : AbstractDungeonGenerator
     {
 
         //Fields
@@ -17,7 +17,7 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
         private int locksCreated = 0;
 
         private DetourDungeonConfig config;
-        private VagueDungeonNode currentRoom;
+        private DungeonRoom currentRoom;
 
 
         //Constructors
@@ -54,10 +54,10 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
                 GenerateChain(chainLength);
 
                 //Put a locked door in this room
-                VagueDungeonNode lockRoom = currentRoom;
-                VagueDungeonNode roomBehindLock = dungeon.CreateRoom();
+                DungeonRoom lockRoom = currentRoom;
+                DungeonRoom roomBehindLock = dungeon.CreateRoom();
 
-                VagueDungeonEdge lockedDoor = lockRoom.ConnectTo(roomBehindLock);
+                DungeonEdge lockedDoor = lockRoom.ConnectTo(roomBehindLock);
                 lockedDoor.keysRequired.Add(new KeyData(locksCreated));
 
                 //Create a chain leading up to the key
@@ -81,7 +81,7 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
             for (int i = 0; i < chainLength; i++)
             {
                 //Create the room.
-                VagueDungeonNode newRoom = dungeon.CreateRoom();
+                DungeonRoom newRoom = dungeon.CreateRoom();
 
                 //Link it to the previous room.
                 currentRoom.ConnectTo(newRoom);

@@ -10,9 +10,9 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
     {
         public class LootKeysCommand : AbstractCommand
         {
-            private VagueDungeonNode room;
+            private DungeonRoom room;
 
-            public LootKeysCommand(VagueDungeonNode room, Explorer parent) : base(parent)
+            public LootKeysCommand(DungeonRoom room, Explorer parent) : base(parent)
             {
                 this.room = room;
             }

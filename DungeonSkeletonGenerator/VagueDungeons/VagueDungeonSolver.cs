@@ -55,7 +55,6 @@ namespace DungeonSkeletonGenerator.VagueDungeons
                 bool foundRoom = DFSForRoom(explorer, room, visited);
                 
                 //Move back to the last room
-                visited[explorer.currentRoom] = false;
                 //Console.WriteLine("visited[" + explorer.currentRoom.roomID + "] = " + visited[explorer.currentRoom]);
                 explorer.Undo();
 

@@ -26,6 +26,10 @@ namespace DungeonSkeletonGenerator
             RecursiveLocksDungeonGenerator generator = new RecursiveLocksDungeonGenerator();
             generator.Generate(1234);
 
+            //Create a loop!
+            //4->1
+            generator.GetDungeon().GetRoom(4).ConnectTo(generator.GetDungeon().GetRoom(1));
+
             VagueDungeonViewer viewer = new VagueDungeonViewer(generator.GetDungeon());
             viewer.Show();
 

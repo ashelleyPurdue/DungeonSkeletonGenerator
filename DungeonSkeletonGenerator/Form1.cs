@@ -20,9 +20,10 @@ namespace DungeonSkeletonGenerator
         {
             InitializeComponent();
 
-            //Test the detour generator
+            //Create a test dungeon with the given seed.
+            RecursiveLocksGeneratorConfig config = new RecursiveLocksGeneratorConfig();
             RecursiveLocksDungeonGenerator generator = new RecursiveLocksDungeonGenerator();
-            generator.Generate();
+            generator.Generate(1234);
 
             VagueDungeonViewer viewer = new VagueDungeonViewer(generator.GetDungeon());
             viewer.Show();

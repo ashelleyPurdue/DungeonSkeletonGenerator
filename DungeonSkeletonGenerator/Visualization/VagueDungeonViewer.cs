@@ -32,25 +32,27 @@ namespace DungeonSkeletonGenerator.Visualization
             for (int i = 0; i < dungeon.roomCount; i++)
             {
                 VagueDungeonNode room = dungeon.GetRoom(i);
+                StringBuilder text = new StringBuilder();
                 Node node = new Node("" + i);
+
+                //Add the room id
+                text.AppendLine("Room " + room.roomID);
 
                 //List all keys in this room.
                 if (room.keysContained.Count == 0)
                 {
-                    node.LabelText = "empty";
+                    text.AppendLine("empty");
                 }
                 else
                 {
-                    StringBuilder text = new StringBuilder();
                     foreach (KeyData key in room.keysContained)
                     {
                         text.AppendLine(key.ToString());
                     }
-
-                    node.LabelText = text.ToString();
                 }
 
                 //Add the node
+                node.LabelText = text.ToString();
                 graph.AddNode(node);
             }
 

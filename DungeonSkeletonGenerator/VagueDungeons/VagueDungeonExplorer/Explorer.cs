@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 using DungeonSkeletonGenerator.Utils;
 using DungeonSkeletonGenerator.VagueDungeons;
@@ -59,7 +60,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
                 }
             }
 
-            if (startedLocked)
+            if (!startedLocked)
             {
                 return true;
             }
@@ -146,6 +147,8 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
         {
             //Returns all of the neighboring edges that can be used.
 
+            //Console.WriteLine("Getting usable edges on room " + currentRoom.roomID);
+
             List<VagueDungeonEdge> edgeList = new List<VagueDungeonEdge>();
 
             for (int i = 0; i < currentRoom.GetEdgeCount(); i++)
@@ -156,6 +159,8 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
                 {
                     edgeList.Add(edge);
                 }
+
+                //Console.WriteLine("" + i + " < " + currentRoom.GetEdgeCount());
             }
 
             return edgeList;
@@ -189,24 +194,30 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
         {
             //Returns if the explorer can use the given neighboring edge.
 
+            //Console.Write("Edge from " + edge.from.roomID + " to " + edge.to.roomID + " ");
+
             //Return false if the edge isn't a neighbor
             if (edge.from != currentRoom && edge.to != currentRoom)
             {
+                //Console.WriteLine("isn't a neighbor");
                 return false;
             }
 
             //Return false if the edge isn't bidirectional and we're not in the right spot
             if (!edge.bidirectional && currentRoom != edge.from)
             {
+                //Console.WriteLine("is going the wrong way");
                 return false;
             }
 
             //Return false if the edge is locked
             if (!EdgeUnlocked(edge))
             {
+                //Console.WriteLine("is not unlocked");
                 return false;
             }
 
+            //Console.WriteLine("is usable");
             return true;
         }
     }

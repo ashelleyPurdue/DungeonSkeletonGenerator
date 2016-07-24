@@ -12,14 +12,17 @@ namespace DungeonSkeletonGenerator.VagueDungeons
         public DungeonRoom to { get; private set; }
 
         public bool bidirectional;
+        public bool isShortcut;
 
         public List<KeyData> keysRequired = new List<KeyData>();
 
-        public DungeonEdge(DungeonRoom from, DungeonRoom to, bool bidirectional)
+        public DungeonEdge(DungeonRoom from, DungeonRoom to, bool bidirectional = true, bool isShortcut = false)
         {
             this.from = from;
             this.to = to;
-            this.bidirectional = true;
+
+            this.bidirectional = bidirectional;
+            this.isShortcut = isShortcut;
         }
     }
 }

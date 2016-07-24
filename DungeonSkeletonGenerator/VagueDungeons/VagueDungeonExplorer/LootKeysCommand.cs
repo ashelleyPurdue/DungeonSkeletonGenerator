@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 {
-    public partial class VagueDungeonExplorer
+    public partial class Explorer
     {
         public class LootKeysCommand : AbstractCommand
         {
             private VagueDungeonNode room;
 
-            public LootKeysCommand(VagueDungeonNode room, VagueDungeonExplorer parent) : base(parent)
+            public LootKeysCommand(VagueDungeonNode room, Explorer parent) : base(parent)
             {
                 this.room = room;
             }

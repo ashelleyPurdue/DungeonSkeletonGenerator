@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 {
-    public partial class VagueDungeonExplorer
+    public partial class Explorer
     {
         public abstract class AbstractCommand
         {
-            protected VagueDungeonExplorer parent;
+            protected Explorer parent;
 
-            public AbstractCommand(VagueDungeonExplorer parent)
+            public AbstractCommand(Explorer parent)
             {
                 this.parent = parent;
             }

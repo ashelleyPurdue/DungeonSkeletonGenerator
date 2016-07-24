@@ -75,9 +75,10 @@
     <Compile Include="VagueDungeons\VagueDungeonExplorer\LootKeysCommand.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\UnlockEdgeCommand.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\UseEdgeCommand.cs" />
-    <Compile Include="VagueDungeons\VagueDungeonExplorer\VagueDungeonExplorer.cs" />
+    <Compile Include="VagueDungeons\VagueDungeonExplorer\Explorer.cs" />
     <Compile Include="VagueDungeons\VagueDungeonGraph.cs" />
     <Compile Include="VagueDungeons\VagueDungeonNode.cs" />
+    <Compile Include="VagueDungeons\VagueDungeonSolver.cs" />
     <Compile Include="Visualization\VagueDungeonViewer.cs">
       <SubType>Form</SubType>
     </Compile>

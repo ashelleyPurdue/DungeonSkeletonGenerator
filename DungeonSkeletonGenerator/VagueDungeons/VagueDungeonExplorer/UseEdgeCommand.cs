@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 {
-    public partial class VagueDungeonExplorer
+    public partial class Explorer
     {
 
-        public class UseEdgeCommand : VagueDungeonExplorer.AbstractCommand
+        public class UseEdgeCommand : Explorer.AbstractCommand
         {
             private VagueDungeonNode previousNode;
 
-            public UseEdgeCommand(VagueDungeonNode previousNode, VagueDungeonExplorer parent) : base(parent)
+            public UseEdgeCommand(VagueDungeonNode previousNode, Explorer parent) : base(parent)
             {
                 this.previousNode = previousNode;
             }

@@ -9,7 +9,7 @@ using DungeonSkeletonGenerator.VagueDungeons;
 
 namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 {
-    public partial class VagueDungeonExplorer
+    public partial class Explorer
     {
         public VagueDungeonGraph dungeon { get; private set; }
         public VagueDungeonNode currentRoom { get; private set; }
@@ -21,7 +21,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 
         private Stack<AbstractCommand> undoStack = new Stack<AbstractCommand>();
 
-        public VagueDungeonExplorer(VagueDungeonGraph dungeon)
+        public Explorer(VagueDungeonGraph dungeon)
         {
             this.dungeon = dungeon;
             currentRoom = dungeon.startRoom;
@@ -42,7 +42,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 
 
         //Key/unlocking methods
-
+        
         public bool EdgeUnlocked(VagueDungeonEdge edge)
         {
             //Returns if the given edge has been unlocked.
@@ -214,9 +214,9 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
     public class CantUseEdgeException : Exception
     {
         public VagueDungeonEdge edge;
-        public VagueDungeonExplorer explorer;
+        public Explorer explorer;
 
-        public CantUseEdgeException(VagueDungeonEdge edge, VagueDungeonExplorer explorer)
+        public CantUseEdgeException(VagueDungeonEdge edge, Explorer explorer)
         {
             this.edge = edge;
             this.explorer = explorer;

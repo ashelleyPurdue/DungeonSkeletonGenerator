@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 {
-    public partial class VagueDungeonExplorer
+    public partial class Explorer
     {
         public class UnlockEdgeCommand : AbstractCommand
         {
             private VagueDungeonEdge edge;
 
-            public UnlockEdgeCommand(VagueDungeonEdge edge, VagueDungeonExplorer parent) : base(parent)
+            public UnlockEdgeCommand(VagueDungeonEdge edge, Explorer parent) : base(parent)
             {
                 this.edge = edge;
             }

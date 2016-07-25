@@ -14,6 +14,7 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
         private int keysToCreate;
 
         private List<DungeonRoom> leafRooms = new List<DungeonRoom>();
+        private List<DungeonRoom> keyRooms = new List<DungeonRoom>();
 
         public MaximumBacktrackingGenerator(MaximumBacktrackingGenerator config = null)
         {
@@ -32,6 +33,7 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
             CreateRandomTree();
 
             //TODO: Hide keys in it
+            HideKeys();
 
             //TODO: Create shortcuts
         }
@@ -46,7 +48,7 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
 
             //Keep randomly adding leaves until we reach the minimum room count AND
             //there are enough leaf rooms for all of the keys
-            while (dungeon.roomCount < config.minRoomCount && leafRooms.Count < keysToCreate)
+            while (dungeon.roomCount < config.minRoomCount || leafRooms.Count < keysToCreate)
             {
                 //Choose a random room from the dungeon
                 int roomID = randGen.Next(0, dungeon.roomCount);
@@ -65,12 +67,42 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
                 leafRooms.Add(newLeaf);
             } 
         }
+
+        private void HideKeys()
+        {
+            //Randomly hides keys in leaf rooms, locking them with another key
+
+            //Make a copy of the leaf list so we can draw from it.
+            List<DungeonRoom> leafPool = new List<DungeonRoom>();
+            foreach (DungeonRoom room in leafRooms)
+            {
+                leafPool.Add(room);
+            }
+
+            //Hide all of the keys in random leaf rooms
+            for (int i = 0; i < keysToCreate; i++)
+            {
+                //Choose a random leaf room
+                int roomID = randGen.Next(0, leafPool.Count);
+                DungeonRoom roomChosen = leafPool[roomID];
+
+                leafPool.RemoveAt(roomID);
+                keyRooms.Add(roomChosen);
+
+                //Put the key in this room.
+                roomChosen.keysContained.Add(new KeyData(i));
+            }
+
+            //TODO: Lock the room, or one of the rooms before it.
+            
+        }
+
     }
 
     public class MaximumBacktrackingConfig
     {
         public int minKeyCount = 3;
-        public int maxKeyCount = 5;
+        public int maxKeyCount = 3;
 
         public int minRoomCount = 10;
     }

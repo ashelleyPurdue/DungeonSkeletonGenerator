@@ -89,11 +89,26 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
                 leafPool.RemoveAt(roomID);
                 keyRooms.Add(roomChosen);
 
-                //Put the key in this room.
-                roomChosen.keysContained.Add(new KeyData(i));
-            }
+                //Lock this room with the key before it.
+                if (i != 0)
+                {
+                    DungeonEdge door = roomChosen.GetEdge(0);
+                    door.keysRequired.Add(new KeyData(i - 1));
 
-            //TODO: Lock the room, or one of the rooms before it.
+                    //TODO: Possibly lock one of the rooms before it instead?
+                }
+
+                //Put a key in this room, unless it's the final one.
+                if (i + 1 < keysToCreate)
+                {
+                    roomChosen.keysContained.Add(new KeyData(i));
+                }
+                else
+                {
+                    //Make this the boss room.
+                    dungeon.bossRoom = roomChosen;
+                }
+            }
             
         }
 

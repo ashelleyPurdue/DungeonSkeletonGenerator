@@ -22,21 +22,18 @@ namespace DungeonSkeletonGenerator
             InitializeComponent();
 
             //Create a test dungeon with the given seed.
-            RecursiveLocksGeneratorConfig config = new RecursiveLocksGeneratorConfig();
-            config.recursionChance = 0.7;
-            config.maxRecursionDepth = 3;
-            RecursiveLocksDungeonGenerator generator = new RecursiveLocksDungeonGenerator();
+            MaximumBacktrackingGenerator generator = new MaximumBacktrackingGenerator();
             generator.Generate();
 
             VagueDungeonViewer viewer = new VagueDungeonViewer(generator.GetDungeon());
             viewer.Show();
 
             //Generate a report on all rooms that are reachable without key-hunting.
-            Explorer explorer = new Explorer(generator.GetDungeon());
+            /*Explorer explorer = new Explorer(generator.GetDungeon());
             for (int i = 0; i < generator.GetDungeon().roomCount; i++)
             {
                 Console.WriteLine("Room " + i + " reachable: " + DungeonSolver.CanReachRoom(explorer, generator.GetDungeon().GetRoom(i)));
-            }
+            }*/
 
         }
     }

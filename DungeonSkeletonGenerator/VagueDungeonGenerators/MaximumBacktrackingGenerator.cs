@@ -13,6 +13,8 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
         private MaximumBacktrackingConfig config;
         private int keysToCreate;
 
+        private List<DungeonRoom> leafRooms = new List<DungeonRoom>();
+
         public MaximumBacktrackingGenerator(MaximumBacktrackingGenerator config = null)
         {
             if (config == null)
@@ -40,8 +42,6 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
 
             DungeonRoom root = dungeon.CreateRoom();
             dungeon.startRoom = root;
-
-            List<DungeonRoom> leafRooms = new List<DungeonRoom>();
             leafRooms.Add(root);
 
             //Keep randomly adding leaves until we reach the minimum room count AND
@@ -52,7 +52,17 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
                 int roomID = randGen.Next(0, dungeon.roomCount);
                 DungeonRoom chosenRoom = dungeon.GetRoom(roomID);
 
-                //TODO: Add a leaf
+                //Remove this room from the leaf list, since we're about to give it a child
+                if (leafRooms.Contains(chosenRoom))
+                {
+                    leafRooms.Remove(chosenRoom);
+                }
+
+                //Add a new room as a leaf/child
+                DungeonRoom newLeaf = dungeon.CreateRoom();
+                chosenRoom.ConnectTo(newLeaf);
+
+                leafRooms.Add(newLeaf);
             } 
         }
     }

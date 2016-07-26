@@ -21,6 +21,17 @@ namespace DungeonSkeletonGenerator.VagueDungeons
             return DFSForRoom(explorer, room, visited);
         }
 
+        public static bool CanGetKey(Explorer explorer, KeyData key)
+        {
+            //Returns if the given explorer can obtain the given number of keys in its current state, without spending any keys
+
+            //We'll use a breadth first search.
+            Queue<DungeonEdge> edgeQueue = new Queue<DungeonEdge>();
+            DefaultDictionary<DungeonEdge, bool> edgeUsed = new DefaultDictionary<DungeonEdge, bool>();
+
+            return false;
+        }
+
         private static bool DFSForRoom(Explorer explorer, DungeonRoom room, DefaultDictionary<DungeonRoom, bool> visited)
         {
             //Recursively searches all neighbors to find the room.

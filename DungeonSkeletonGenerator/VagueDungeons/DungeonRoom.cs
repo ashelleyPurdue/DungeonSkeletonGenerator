@@ -28,6 +28,21 @@ namespace DungeonSkeletonGenerator.VagueDungeons
 
         //Methods
 
+        public int GetKeyCount(int keyID)
+        {
+            //Returns the keycount of the given key
+
+            foreach (KeyData kd in keysContained)
+            {
+                if (kd.keyID == keyID)
+                {
+                    return kd.keyCount;
+                }
+            }
+
+            return 0;
+        }
+
         public DungeonEdge GetEdge(int i)
         {
             return edges[i];

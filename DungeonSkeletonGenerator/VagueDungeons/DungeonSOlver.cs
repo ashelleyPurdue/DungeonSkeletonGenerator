@@ -21,15 +21,65 @@ namespace DungeonSkeletonGenerator.VagueDungeons
             return DFSForRoom(explorer, room, visited);
         }
 
-        public static bool CanGetKey(Explorer explorer, KeyData key)
+        public static bool CanGetKey(Explorer explorer, KeyData targetKey)
         {
-            //Returns if the given explorer can obtain the given number of keys in its current state, without spending any keys
+            //Returns if the given explorer can obtain the given number of keys in its current state and then return
+            //to the current room, without spending any keys.
 
-            //We'll use a breadth first search.
-            Queue<DungeonEdge> edgeQueue = new Queue<DungeonEdge>();
-            DefaultDictionary<DungeonEdge, bool> edgeUsed = new DefaultDictionary<DungeonEdge, bool>();
+            //Breadth-first-search to find all reachable keys of the given type.
+            Queue<DungeonRoom> exploreQueue = new Queue<DungeonRoom>();
+            exploreQueue.Enqueue(explorer.currentRoom);
+            DefaultDictionary<DungeonRoom, bool> visited = new DefaultDictionary<DungeonRoom, bool>(false);
 
-            return false;
+            List<DungeonRoom> keyRooms = new List<DungeonRoom>();
+
+            do
+            {
+                //Visit the next room in the queue
+                DungeonRoom room = exploreQueue.Dequeue();
+                visited[room] = true;
+
+                //If this room contains a compatible key, add it to the keyRooms list
+                foreach (KeyData kd in room.keysContained)
+                {
+                    if (kd.keyID == targetKey.keyID)
+                    {
+                        keyRooms.Add(room);
+                    }
+                }
+
+                //Add every neighboring, unvisited room to the exploreQueue
+                List<DungeonEdge> neighbors = explorer.UseableNeighboringEdges(room);
+                foreach (DungeonEdge edge in neighbors)
+                {
+                    //Get the target room
+                    DungeonRoom roomToVisit = edge.to;
+                    if (roomToVisit == room)
+                    {
+                        roomToVisit = edge.from;
+                    }
+
+                    //Add it to the explore queue if it's not already visited
+                    if (!visited[roomToVisit])
+                    {
+                        exploreQueue.Enqueue(roomToVisit);
+                    }
+                }
+
+            } while (exploreQueue.Count > 0);
+
+            //Count up all of the keys we could find that have a path back to currentRoom
+            int keysFound = 0;
+            foreach (DungeonRoom keyRoom in keyRooms)
+            {
+                if (explorer.PathToRoom(keyRoom, explorer.currentRoom) != null)
+                {
+                    keysFound += keyRoom.GetKeyCount(targetKey.keyID);
+                }
+            }
+
+            //Return if we found enough.
+            return keysFound >= targetKey.keyCount;
         }
 
         private static bool DFSForRoom(Explorer explorer, DungeonRoom room, DefaultDictionary<DungeonRoom, bool> visited)

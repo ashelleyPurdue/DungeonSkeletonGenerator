@@ -32,10 +32,11 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
             //Create a random tree
             CreateRandomTree();
 
-            //TODO: Hide keys in it
+            //Hide keys in it
             HideKeys();
 
             //TODO: Create shortcuts
+            CreateShortcuts();
         }
 
         private void CreateRandomTree()
@@ -65,7 +66,7 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
                 chosenRoom.ConnectTo(newLeaf);
 
                 leafRooms.Add(newLeaf);
-            } 
+            }
         }
 
         private void HideKeys()
@@ -109,9 +110,83 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
                     dungeon.bossRoom = roomChosen;
                 }
             }
-            
+
         }
 
+        private void CreateShortcuts()
+        {
+            //Creates shortcuts between rooms.
+            //TODO: Try out different methods of creating shortcuts.
+
+            //For every key, create a shortcut to its lock.
+            for (int i = 0; i < keyRooms.Count - 1; i++)
+            {
+                //Select the room right before the key
+                DungeonRoom fromRoom = ParentRoom(keyRooms[i]);
+
+                //Select the room right before the lock.
+                //If there isn't one, then select the room *with* the lock.
+                DungeonRoom withLock = ParentRoom(keyRooms[i + 1]);
+                DungeonRoom toRoom = ParentRoom(withLock);
+
+                if (toRoom == null)
+                {
+                    toRoom = withLock;
+                }
+
+                //Skip this one if either rooms are null.
+                if (fromRoom == null || toRoom == null)
+                {
+                    continue;
+                }
+
+                //Skip this one if they aren't the same room.
+                if (fromRoom == toRoom)
+                {
+                    continue;
+                }
+
+                //Skip this one if there already exists an edge between the two rooms.
+                bool shouldSkip = false;
+                for (int e = 0; e < fromRoom.GetEdgeCount(); e++)
+                {
+                    DungeonEdge edge = fromRoom.GetEdge(e);
+                    if (edge.from == toRoom || edge.to == toRoom)
+                    {
+                        shouldSkip = true;
+                        break;
+                    }
+                }
+
+                if (shouldSkip)
+                {
+                    continue;
+                }
+
+                //Create the shortcut
+                DungeonEdge newEdge = fromRoom.ConnectTo(toRoom);
+                newEdge.type = EdgeType.shortcut;
+            }
+        }
+
+        private DungeonRoom ParentRoom(DungeonRoom leaf)
+        {
+            //Returns the parent of the given leaf.
+
+            //Search for an edge that leads *to* this room.
+            for (int i = 0; i < leaf.GetEdgeCount(); i++)
+            {
+                DungeonEdge edge = leaf.GetEdge(i);
+
+                if (edge.bidirectional && edge.to == leaf)
+                {
+                    return edge.from;
+                }
+            }
+
+            //None was found, so return null
+            return null;
+        }
     }
 
     public class MaximumBacktrackingConfig

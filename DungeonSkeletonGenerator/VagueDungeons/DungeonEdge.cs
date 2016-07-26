@@ -17,6 +17,22 @@ namespace DungeonSkeletonGenerator.VagueDungeons
         }
         public EdgeType type;
 
+        public bool requiresKeys
+        {
+            get
+            {
+                foreach (KeyData kd in keysRequired)
+                {
+                    if (kd.keyCount > 0)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
+
         public List<KeyData> keysRequired = new List<KeyData>();
 
         public DungeonEdge(DungeonRoom from, DungeonRoom to, bool bidirectional)

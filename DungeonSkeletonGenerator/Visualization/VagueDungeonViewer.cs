@@ -76,10 +76,23 @@ namespace DungeonSkeletonGenerator.Visualization
                     edge.LabelText = text.ToString();
                 }
 
+                //Change the shape of the edge if it's bidirectional
+                if (dngEdge.bidirectional)
+                {
+                    edge.Attr.ArrowheadAtSource = ArrowStyle.Normal;
+                    edge.Attr.ArrowheadAtTarget = ArrowStyle.Normal;
+                }
+
                 //Change the color based on the type of edge.
                 if (dngEdge.type == EdgeType.shortcut)
                 {
                     edge.Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                }
+
+                //If the edge is locked, make it red.
+                if (dngEdge.requiresKeys)
+                {
+                    edge.Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                 }
             }
 

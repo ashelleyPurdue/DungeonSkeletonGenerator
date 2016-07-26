@@ -43,7 +43,7 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 
 
         //Key/unlocking methods
-        
+
         public bool EdgeUnlocked(DungeonEdge edge)
         {
             //Returns if the given edge has been unlocked.
@@ -82,6 +82,13 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
             }
 
             return true;
+        }
+
+        public bool HasKeys(KeyData keyData)
+        {
+            //Returns if the dungeon has the given number of keys of the given type
+
+            return keyInventory[keyData.keyID] >= keyData.keyCount;
         }
 
         public bool TryUnlock(DungeonEdge edge)
@@ -143,24 +150,26 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
 
         //Edge/movement methods
 
-        public List<DungeonEdge> UseableNeighboringEdges()
+        public List<DungeonEdge> UseableNeighboringEdges(DungeonRoom room = null)
         {
             //Returns all of the neighboring edges that can be used.
 
-            //Console.WriteLine("Getting usable edges on room " + currentRoom.roomID);
+            //Make room default to currentRoom
+            if (room == null)
+            {
+                room = currentRoom;
+            }
 
             List<DungeonEdge> edgeList = new List<DungeonEdge>();
 
-            for (int i = 0; i < currentRoom.GetEdgeCount(); i++)
+            for (int i = 0; i < room.GetEdgeCount(); i++)
             {
                 //Add it to the list if it's useable
-                DungeonEdge edge = currentRoom.GetEdge(i);
-                if (CanUseEdge(edge))
+                DungeonEdge edge = room.GetEdge(i);
+                if (CanUseEdge(edge, room))
                 {
                     edgeList.Add(edge);
                 }
-
-                //Console.WriteLine("" + i + " < " + currentRoom.GetEdgeCount());
             }
 
             return edgeList;
@@ -190,34 +199,87 @@ namespace DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer
             }
         }
 
-        private bool CanUseEdge(DungeonEdge edge)
+        public List<DungeonEdge> PathToRoom(DungeonRoom roomA, DungeonRoom roomB, DefaultDictionary<DungeonRoom, bool> visited = null)
         {
-            //Returns if the explorer can use the given neighboring edge.
+            //Returns a path from roomA to roomB that could be used in the explorer's current state, if it were currently in roomA.
+            //The list is in reverse order.
+            //Returns null if no path exists.
 
-            //Console.Write("Edge from " + edge.from.roomID + " to " + edge.to.roomID + " ");
+            //Create the visited array if it doesn't exist.
+            if (visited == null)
+            {
+                visited = new DefaultDictionary<DungeonRoom, bool>(false);
+            }
+
+            //Mark roomA as visited.
+            visited[roomA] = true;
+
+            //If roomA is roomB, return an empty list.
+            if (roomA == roomB)
+            {
+                return new List<DungeonEdge>();
+            }
+
+            //Check run on every neighboring edge recursively.
+            List<DungeonEdge> neighboringEdges = UseableNeighboringEdges(roomA);
+            foreach (DungeonEdge edge in neighboringEdges)
+            {
+                //Figure out which room is on the opposite end of the edge.
+                DungeonRoom roomToVisit = edge.to;
+                if (roomToVisit == roomA)
+                {
+                    roomToVisit = edge.from;
+                }
+
+                //Skip this edge if the room has been visited
+                if (visited[roomToVisit])
+                {
+                    continue;
+                }
+
+                //Run on the other room.
+                List<DungeonEdge> partialList = PathToRoom(roomToVisit, roomB, visited);
+
+                //If we successfully found a path, add this edge and return it.
+                if (partialList != null)
+                {
+                    partialList.Add(edge);
+                    return partialList;
+                }
+            }
+
+            //We couldn't find a path, so return null.
+            return null;
+        }
+
+        private bool CanUseEdge(DungeonEdge edge, DungeonRoom room = null)
+        {
+            //Returns if the explorer can use the given edge from the given room.
+
+            //Make room default to currentRoom.
+            if (room == null)
+            {
+                room = currentRoom;
+            }
 
             //Return false if the edge isn't a neighbor
-            if (edge.from != currentRoom && edge.to != currentRoom)
+            if (edge.from != room && edge.to != room)
             {
-                //Console.WriteLine("isn't a neighbor");
                 return false;
             }
 
             //Return false if the edge isn't bidirectional and we're not in the right spot
-            if (!edge.bidirectional && currentRoom != edge.from)
+            if (!edge.bidirectional && room != edge.from)
             {
-                //Console.WriteLine("is going the wrong way");
                 return false;
             }
 
             //Return false if the edge is locked
             if (!EdgeUnlocked(edge))
             {
-                //Console.WriteLine("is not unlocked");
                 return false;
             }
 
-            //Console.WriteLine("is usable");
             return true;
         }
     }

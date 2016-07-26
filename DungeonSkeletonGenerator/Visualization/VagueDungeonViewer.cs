@@ -54,6 +54,12 @@ namespace DungeonSkeletonGenerator.Visualization
                 //Add the node
                 node.LabelText = text.ToString();
                 graph.AddNode(node);
+
+                //Make the node green if it's the boss room.
+                if (room == dungeon.bossRoom)
+                {
+                    node.Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                }
             }
 
             //Add every edge

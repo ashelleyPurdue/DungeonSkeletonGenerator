@@ -25,16 +25,18 @@ namespace DungeonSkeletonGenerator
             MaximumBacktrackingGenerator generator = new MaximumBacktrackingGenerator();
             generator.Generate();
 
-            VagueDungeonViewer viewer = new VagueDungeonViewer(generator.GetDungeon());
-            viewer.Show();
-
-            //Generate a report on all rooms that are reachable without key-hunting.
-            /*Explorer explorer = new Explorer(generator.GetDungeon());
-            for (int i = 0; i < generator.GetDungeon().roomCount; i++)
+            //Test the CanFindKey method
+            int maxKeys = 5;
+            Explorer explorer = new Explorer(generator.GetDungeon());
+            for (int i = 0; i < maxKeys; i++)
             {
-                Console.WriteLine("Room " + i + " reachable: " + DungeonSolver.CanReachRoom(explorer, generator.GetDungeon().GetRoom(i)));
-            }*/
+                //Print if we can find each key
+                Console.WriteLine("" + i + ": " + DungeonSolver.CanGetKey(explorer, new KeyData(i)));
+            }
 
+            //Show the dungeon
+            VagueDungeonViewer viewer = new VagueDungeonViewer(generator.GetDungeon());
+            viewer.ShowDialog();
         }
     }
 }

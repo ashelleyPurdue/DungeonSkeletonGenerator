@@ -75,6 +75,12 @@ namespace DungeonSkeletonGenerator.Visualization
 
                     edge.LabelText = text.ToString();
                 }
+
+                //Change the color based on the type of edge.
+                if (dngEdge.type == EdgeType.shortcut)
+                {
+                    edge.Attr.Color = Microsoft.Msagl.Drawing.Color.Blue;
+                }
             }
 
             //Return the viewer

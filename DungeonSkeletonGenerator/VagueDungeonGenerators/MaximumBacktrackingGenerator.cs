@@ -39,7 +39,7 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
             //Hide keys in it
             HideKeys();
 
-            //TODO: Create shortcuts
+            //Create shortcuts
             CreateShortcuts();
         }
 

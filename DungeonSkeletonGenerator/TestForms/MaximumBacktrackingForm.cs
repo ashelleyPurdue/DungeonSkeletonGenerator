@@ -24,7 +24,9 @@ namespace DungeonSkeletonGenerator.TestForms
         private AbstractDungeonGenerator GetGenerator()
         {
             //Create the generator from this configuration
+
             MaximumBacktrackingConfig config = new MaximumBacktrackingConfig();
+
             config.minKeyCount = (int)minKeys.Value;
             config.maxKeyCount = (int)maxKeys.Value;
             config.minRoomCount = (int)minRooms.Value;

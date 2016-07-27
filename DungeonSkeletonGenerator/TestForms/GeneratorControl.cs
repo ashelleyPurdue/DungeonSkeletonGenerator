@@ -34,7 +34,7 @@ namespace DungeonSkeletonGenerator.TestForms
             AbstractDungeonGenerator generator = GetGenerator();
 
             //Check if we should use a seed
-            if (seedCheckbox.Enabled)
+            if (seedCheckbox.Checked)
             {
                 //TODO: If it's all numbers, parse as an int instead.
                 generator.Generate(seedTextbox.Text.GetHashCode());

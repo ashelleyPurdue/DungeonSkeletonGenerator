@@ -16,11 +16,15 @@ namespace DungeonSkeletonGenerator.VagueDungeonGenerators
         private List<DungeonRoom> leafRooms = new List<DungeonRoom>();
         private List<DungeonRoom> keyRooms = new List<DungeonRoom>();
 
-        public MaximumBacktrackingGenerator(MaximumBacktrackingGenerator config = null)
+        public MaximumBacktrackingGenerator(MaximumBacktrackingConfig config = null)
         {
             if (config == null)
             {
                 this.config = new MaximumBacktrackingConfig();
+            }
+            else
+            {
+                this.config = config;
             }
         }
 

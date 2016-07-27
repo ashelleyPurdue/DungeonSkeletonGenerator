@@ -13,6 +13,8 @@ using DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer;
 using DungeonSkeletonGenerator.VagueDungeonGenerators;
 using DungeonSkeletonGenerator.Visualization;
 
+using DungeonSkeletonGenerator.TestForms;
+
 namespace DungeonSkeletonGenerator
 {
     public partial class Form1 : Form
@@ -20,23 +22,17 @@ namespace DungeonSkeletonGenerator
         public Form1()
         {
             InitializeComponent();
+        }
 
-            //Create a test dungeon with the given seed.
-            MaximumBacktrackingGenerator generator = new MaximumBacktrackingGenerator();
-            generator.Generate();
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
-            //Test the CanFindKey method
-            int maxKeys = 5;
-            Explorer explorer = new Explorer(generator.GetDungeon());
-            for (int i = 0; i < maxKeys; i++)
-            {
-                //Print if we can find each key
-                Console.WriteLine("" + i + ": " + DungeonSolver.CanGetKey(explorer, new KeyData(i)));
-            }
+        }
 
-            //Show the dungeon
-            VagueDungeonViewer viewer = new VagueDungeonViewer(generator.GetDungeon());
-            viewer.ShowDialog();
+        private void maximumBacktrackingButton_Click(object sender, EventArgs e)
+        {
+            MaximumBacktrackingForm form = new MaximumBacktrackingForm();
+            form.Show();
         }
     }
 }

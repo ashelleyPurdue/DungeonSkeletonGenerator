@@ -63,6 +63,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestForms\DetourForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestForms\DetourForm.Designer.cs">
+      <DependentUpon>DetourForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TestForms\GeneratorControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -110,6 +116,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="TestForms\DetourForm.resx">
+      <DependentUpon>DetourForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TestForms\GeneratorControl.resx">
       <DependentUpon>GeneratorControl.cs</DependentUpon>
     </EmbeddedResource>

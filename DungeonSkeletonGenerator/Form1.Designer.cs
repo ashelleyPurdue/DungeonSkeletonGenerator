@@ -65,6 +65,7 @@
             this.detourButton.TabIndex = 0;
             this.detourButton.Text = "Detour";
             this.detourButton.UseVisualStyleBackColor = true;
+            this.detourButton.Click += new System.EventHandler(this.detourButton_Click);
             // 
             // recursiveButton
             // 

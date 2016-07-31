@@ -34,5 +34,16 @@ namespace DungeonSkeletonGenerator
             MaximumBacktrackingForm form = new MaximumBacktrackingForm();
             form.Show();
         }
+
+        private void detourButton_Click(object sender, EventArgs e)
+        {
+            ShowForm<DetourForm>();
+        }
+
+        private void ShowForm<T>() where T : Form, new()
+        {
+            T form = new T();
+            form.Show();
+        }
     }
 }

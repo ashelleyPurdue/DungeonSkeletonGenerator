@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using DungeonSkeletonGenerator.VagueDungeonGenerators;
+using DungeonSkeletonLibrary.VagueDungeonGenerators;
 using DungeonSkeletonGenerator.Visualization;
 
 namespace DungeonSkeletonGenerator.TestForms

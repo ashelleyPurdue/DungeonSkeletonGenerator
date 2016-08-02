@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using DungeonSkeletonGenerator.VagueDungeons;
-using DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer;
-using DungeonSkeletonGenerator.VagueDungeonGenerators;
+using DungeonSkeletonLibrary.VagueDungeons;
+using DungeonSkeletonLibrary.VagueDungeons.VagueDungeonExplorer;
+using DungeonSkeletonLibrary.VagueDungeonGenerators;
 using DungeonSkeletonGenerator.Visualization;
 
 using DungeonSkeletonGenerator.TestForms;

@@ -124,7 +124,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DungeonSkeletonLibrary\DungeonSkeletonLibrary.csproj">
+      <Project>{969d2542-7c7c-455b-9e02-a58d49f3c3b0}</Project>
+      <Name>DungeonSkeletonLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

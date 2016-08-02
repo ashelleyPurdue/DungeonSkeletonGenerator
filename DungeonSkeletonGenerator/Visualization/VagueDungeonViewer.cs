@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using DungeonSkeletonGenerator.VagueDungeons;
+using DungeonSkeletonLibrary.VagueDungeons;
 using Microsoft.Msagl;
 using Microsoft.Msagl.Drawing;
 using Microsoft.Msagl.GraphViewerGdi;

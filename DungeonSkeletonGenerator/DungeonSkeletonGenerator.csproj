@@ -81,7 +81,6 @@
     <Compile Include="TestForms\MaximumBacktrackingForm.Designer.cs">
       <DependentUpon>MaximumBacktrackingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\DefaultDictionary.cs" />
     <Compile Include="Visualization\VagueDungeonViewer.cs">
       <SubType>Form</SubType>
     </Compile>

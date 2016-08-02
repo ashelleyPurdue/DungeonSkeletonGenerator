@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using DungeonSkeletonGenerator.VagueDungeons;
+using DungeonSkeletonLibrary.VagueDungeons;
 
-namespace DungeonSkeletonGenerator.VagueDungeonGenerators
+namespace DungeonSkeletonLibrary.VagueDungeonGenerators
 {
     public class DetourDungeonGenerator : AbstractDungeonGenerator
     {

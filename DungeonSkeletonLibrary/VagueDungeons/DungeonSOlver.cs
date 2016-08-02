@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 
 using DungeonSkeletonGenerator.Utils;
-using DungeonSkeletonGenerator.VagueDungeons.VagueDungeonExplorer;
+using DungeonSkeletonLibrary.VagueDungeons.VagueDungeonExplorer;
 
-namespace DungeonSkeletonGenerator.VagueDungeons
+namespace DungeonSkeletonLibrary.VagueDungeons
 {
     public class DungeonSolver
     {

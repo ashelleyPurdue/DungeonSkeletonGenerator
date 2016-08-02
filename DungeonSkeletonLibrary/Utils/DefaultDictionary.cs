@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DungeonSkeletonGenerator.Utils
+namespace DungeonSkeletonLibrary.Utils
 {
     public class DefaultDictionary<TKey, TVal>
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-using DungeonSkeletonGenerator.Utils;
+using DungeonSkeletonLibrary.Utils;
 using DungeonSkeletonLibrary.VagueDungeons;
 
 namespace DungeonSkeletonLibrary.VagueDungeons.VagueDungeonExplorer

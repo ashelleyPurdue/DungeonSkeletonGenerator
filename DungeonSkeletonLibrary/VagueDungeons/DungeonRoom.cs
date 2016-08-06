@@ -54,11 +54,22 @@ namespace DungeonSkeletonLibrary.VagueDungeons
 
         public DungeonEdge ConnectTo(DungeonRoom other, bool bidirectional = true)
         {
+            EdgeType type = EdgeType.oneWay;
+            if (bidirectional)
+            {
+                type = EdgeType.bidirectional;
+            }
+
+            return ConnectTo(other, type);
+        }
+
+        public DungeonEdge ConnectTo(DungeonRoom other, EdgeType edgeType)
+        {
             //Creates an edge from this node to the other.
             //The edge is added to both nodes' edge list
             //Returns the created edge
 
-            DungeonEdge edge = new DungeonEdge(this, other, bidirectional);
+            DungeonEdge edge = new DungeonEdge(this, other, edgeType);
             this.edges.Add(edge);
             other.edges.Add(edge);
             dungeon.AddEdge(edge);

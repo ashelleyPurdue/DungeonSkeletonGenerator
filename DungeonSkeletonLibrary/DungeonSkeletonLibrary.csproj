@@ -62,6 +62,7 @@
     <Compile Include="VagueDungeons\VagueDungeonExplorer\LootKeysCommand.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\UnlockEdgeCommand.cs" />
     <Compile Include="VagueDungeons\VagueDungeonExplorer\UseEdgeCommand.cs" />
+    <Compile Include="VagueDungeons\VagueDungeonModifiers\EdgeCapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

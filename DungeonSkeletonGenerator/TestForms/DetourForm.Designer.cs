@@ -30,19 +30,19 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.maxChain = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
             this.minChain = new System.Windows.Forms.NumericUpDown();
             this.maxKeys = new System.Windows.Forms.NumericUpDown();
             this.minKeys = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.generatorControl1 = new DungeonSkeletonGenerator.TestForms.GeneratorControl();
-            this.label4 = new System.Windows.Forms.Label();
-            this.maxChain = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maxChain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minChain)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxKeys)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minKeys)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maxChain)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -76,6 +76,22 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00375F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(259, 122);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // maxChain
+            // 
+            this.maxChain.Location = new System.Drawing.Point(132, 93);
+            this.maxChain.Name = "maxChain";
+            this.maxChain.Size = new System.Drawing.Size(120, 20);
+            this.maxChain.TabIndex = 6;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 90);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(117, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Maximum Chain Length";
             // 
             // minChain
             // 
@@ -118,42 +134,26 @@
             // 
             // generatorControl1
             // 
-            this.generatorControl1.Location = new System.Drawing.Point(122, 266);
+            this.generatorControl1.Location = new System.Drawing.Point(122, 140);
             this.generatorControl1.Name = "generatorControl1";
-            this.generatorControl1.Size = new System.Drawing.Size(150, 94);
+            this.generatorControl1.Size = new System.Drawing.Size(150, 142);
             this.generatorControl1.TabIndex = 2;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 90);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(117, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Maximum Chain Length";
-            // 
-            // maxChain
-            // 
-            this.maxChain.Location = new System.Drawing.Point(132, 93);
-            this.maxChain.Name = "maxChain";
-            this.maxChain.Size = new System.Drawing.Size(120, 20);
-            this.maxChain.TabIndex = 6;
             // 
             // DetourForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 372);
+            this.ClientSize = new System.Drawing.Size(284, 282);
             this.Controls.Add(this.generatorControl1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "DetourForm";
             this.Text = "DetourForm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maxChain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minChain)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxKeys)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minKeys)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maxChain)).EndInit();
             this.ResumeLayout(false);
 
         }

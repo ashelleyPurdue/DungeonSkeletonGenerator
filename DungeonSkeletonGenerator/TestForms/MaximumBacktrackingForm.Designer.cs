@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.minRooms = new System.Windows.Forms.NumericUpDown();
+            this.maxKeys = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.minKeys = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.maxKeys = new System.Windows.Forms.NumericUpDown();
-            this.minRooms = new System.Windows.Forms.NumericUpDown();
             this.generatorControl1 = new DungeonSkeletonGenerator.TestForms.GeneratorControl();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.minKeys)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maxKeys)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minRooms)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxKeys)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minKeys)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -61,6 +61,20 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(259, 122);
             this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // minRooms
+            // 
+            this.minRooms.Location = new System.Drawing.Point(132, 83);
+            this.minRooms.Name = "minRooms";
+            this.minRooms.Size = new System.Drawing.Size(120, 20);
+            this.minRooms.TabIndex = 5;
+            // 
+            // maxKeys
+            // 
+            this.maxKeys.Location = new System.Drawing.Point(132, 43);
+            this.maxKeys.Name = "maxKeys";
+            this.maxKeys.Size = new System.Drawing.Size(120, 20);
+            this.maxKeys.TabIndex = 4;
             // 
             // label1
             // 
@@ -97,41 +111,27 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Minimum Room Count";
             // 
-            // maxKeys
-            // 
-            this.maxKeys.Location = new System.Drawing.Point(132, 43);
-            this.maxKeys.Name = "maxKeys";
-            this.maxKeys.Size = new System.Drawing.Size(120, 20);
-            this.maxKeys.TabIndex = 4;
-            // 
-            // minRooms
-            // 
-            this.minRooms.Location = new System.Drawing.Point(132, 83);
-            this.minRooms.Name = "minRooms";
-            this.minRooms.Size = new System.Drawing.Size(120, 20);
-            this.minRooms.TabIndex = 5;
-            // 
             // generatorControl1
             // 
             this.generatorControl1.Location = new System.Drawing.Point(145, 140);
             this.generatorControl1.Name = "generatorControl1";
-            this.generatorControl1.Size = new System.Drawing.Size(127, 94);
+            this.generatorControl1.Size = new System.Drawing.Size(127, 144);
             this.generatorControl1.TabIndex = 1;
             // 
             // MaximumBacktrackingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 283);
             this.Controls.Add(this.generatorControl1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MaximumBacktrackingForm";
             this.Text = "MaximumBacktrackingForm";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.minKeys)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maxKeys)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minRooms)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxKeys)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minKeys)).EndInit();
             this.ResumeLayout(false);
 
         }

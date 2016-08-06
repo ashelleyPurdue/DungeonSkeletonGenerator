@@ -49,7 +49,7 @@ namespace DungeonSkeletonLibrary.VagueDungeons.VagueDungeonModifiers
         private static void LimitEdges(DungeonRoom room, int maxEdgesPerRoom)
         {
             //Don't go on if the edge count is fine.
-            if (room.GetEdgeCount() < maxEdgesPerRoom)
+            if (room.GetEdgeCount() <= maxEdgesPerRoom)
             {
                 return;
             }

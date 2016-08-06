@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using DungeonSkeletonLibrary.VagueDungeonGenerators;
+using DungeonSkeletonLibrary.VagueDungeons.VagueDungeonModifiers;
 using DungeonSkeletonGenerator.Visualization;
 
 namespace DungeonSkeletonGenerator.TestForms
@@ -28,6 +29,11 @@ namespace DungeonSkeletonGenerator.TestForms
             seedTextbox.Enabled = seedCheckbox.Checked;
         }
 
+        private void capEdgesCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            capEdgesBox.Enabled = capEdgesCheckbox.Checked;
+        }
+
         private void generateButton_Click(object sender, EventArgs e)
         {
             //Get the generator
@@ -42,6 +48,12 @@ namespace DungeonSkeletonGenerator.TestForms
             else
             {
                 generator.Generate();
+            }
+
+            //Check if we should limit the number of edges
+            if (capEdgesCheckbox.Checked)
+            {
+                EdgeCapper.CapEdges(generator.GetDungeon(), (int)(capEdgesBox.Value));
             }
 
             //Show the dungeon

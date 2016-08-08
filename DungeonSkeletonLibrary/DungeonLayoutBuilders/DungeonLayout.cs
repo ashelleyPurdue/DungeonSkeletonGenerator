@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
+using DungeonSkeletonLibrary.DungeonLayoutBuilder.LayoutRooms;
+
+namespace DungeonSkeletonLibrary.DungeonLayoutBuilder
 {
     public class DungeonLayout
     {

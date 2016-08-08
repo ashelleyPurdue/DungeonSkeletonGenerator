@@ -6,7 +6,7 @@ using System.Text;
 using DungeonSkeletonLibrary.Utils;
 using DungeonSkeletonLibrary.VagueDungeons;
 
-namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
+namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.LayoutRooms
 {
     public class RectangleLayoutRoom : LayoutRoom
     {

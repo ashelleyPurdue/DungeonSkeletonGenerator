@@ -5,7 +5,7 @@ using System.Text;
 
 using DungeonSkeletonLibrary.VagueDungeons;
 
-namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
+namespace DungeonSkeletonLibrary.DungeonLayoutBuilder
 {
     public abstract class AbstractLayoutBuilder
     {

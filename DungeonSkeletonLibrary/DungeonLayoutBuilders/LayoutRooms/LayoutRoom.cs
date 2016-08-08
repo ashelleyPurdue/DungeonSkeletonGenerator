@@ -6,9 +6,8 @@ using System.Text;
 using DungeonSkeletonLibrary.Utils;
 using DungeonSkeletonLibrary.VagueDungeons;
 
-//TODO:  Add a tree depth variable.
 
-namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
+namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.LayoutRooms
 {
     public abstract class LayoutRoom
     {

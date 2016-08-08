@@ -16,5 +16,10 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
         {
             this.GetRoom = GetRoom;
         }
+
+        protected override void BuildInternal()
+        {
+            //TODO: Build the dungeon.
+        }
     }
 }

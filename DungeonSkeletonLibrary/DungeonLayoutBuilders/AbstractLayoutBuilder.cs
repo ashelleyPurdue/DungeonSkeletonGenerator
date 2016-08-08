@@ -7,12 +7,12 @@ using DungeonSkeletonLibrary.VagueDungeons;
 
 namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
 {
-    public class AbstractLayoutBuilder
+    public abstract class AbstractLayoutBuilder
     {
         public readonly Dungeon vagueDungeon;
         public bool doneBuilding { get; private set; }
 
-        private DungeonLayout layout = new DungeonLayout();
+        protected DungeonLayout layout = new DungeonLayout();
 
         public AbstractLayoutBuilder(Dungeon vagueDungeon)
         {
@@ -22,7 +22,9 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
 
         public void Build()
         {
-            //TODO: build the dungeon
+            //Build the dungeon
+            doneBuilding = false;
+            BuildInternal();
             doneBuilding = true;
         }
 
@@ -37,5 +39,7 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
 
             return layout;
         }
+
+        protected abstract void BuildInternal();
     }
 }

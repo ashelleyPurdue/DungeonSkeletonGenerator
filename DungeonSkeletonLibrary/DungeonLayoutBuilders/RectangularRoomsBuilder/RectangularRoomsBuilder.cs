@@ -11,18 +11,31 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.RectangularRoomsBuilder
 {
     public class RectangularRoomsBuilder : AbstractLayoutBuilder
     {
+        //Delegates
         public delegate RectangleLayoutRoom RectangularRoomProviderMethod(DungeonRoom dngRoom);
         private RectangularRoomProviderMethod GetRoom;
 
+
+        //Private fields
+        
         private Dictionary<DungeonRoom, LayoutRoom> layoutRooms = new Dictionary<DungeonRoom, LayoutRoom>();
+
+
+        //BFS fields
 
         private DefaultDictionary<DungeonRoom, bool> visited = new DefaultDictionary<DungeonRoom, bool>(false);
         private Queue<DungeonRoom> bfsQueue = new Queue<DungeonRoom>();
+
+
+        //Constructors
 
         public RectangularRoomsBuilder(Dungeon vagueDungeon, RectangularRoomProviderMethod GetRoom) : base(vagueDungeon)
         {
             this.GetRoom = GetRoom;
         }
+
+
+        //Required abstract methods
 
         protected override void BuildInternal()
         {
@@ -41,6 +54,9 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.RectangularRoomsBuilder
 
             //TODO: Prevent colliding rooms
         }
+
+
+        //Misc methods
 
         private void AdvanceBFS()
         {

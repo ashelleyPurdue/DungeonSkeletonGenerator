@@ -56,6 +56,9 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.LayoutRooms
             }
         }
 
+
+        //Constructors
+
         public LayoutRoom(DungeonRoom dungeonRoom)
         {
             this.dungeonRoom = dungeonRoom;

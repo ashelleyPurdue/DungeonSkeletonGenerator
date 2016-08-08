@@ -9,8 +9,6 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder
 {
     public class DungeonLayout
     {
-        //Store things related to the dungeon layout
-
         public LayoutRoom this[int i]
         {
             get { return rooms[i]; }

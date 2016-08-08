@@ -14,11 +14,17 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder
 
         protected DungeonLayout layout = new DungeonLayout();
 
+
+        //Constructors
+
         public AbstractLayoutBuilder(Dungeon vagueDungeon)
         {
             this.dungeon = vagueDungeon;
             doneBuilding = false;
         }
+
+
+        //Implemented methods
 
         public void Build()
         {
@@ -39,6 +45,9 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder
 
             return layout;
         }
+
+
+        //Abstract methods
 
         protected abstract void BuildInternal();
     }

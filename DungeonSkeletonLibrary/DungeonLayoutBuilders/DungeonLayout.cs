@@ -14,12 +14,17 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
             get { return rooms[i]; }
         }
 
+        public int roomCount { get { return rooms.Count; } }
+
         private List<LayoutRoom> rooms = new List<LayoutRoom>();
 
 
         public void AddRoom(LayoutRoom room)
         {
-            //TODO: Add a room.
+            if (!rooms.Contains(room))
+            {
+                rooms.Add(room);
+            }
         }
     }
 }

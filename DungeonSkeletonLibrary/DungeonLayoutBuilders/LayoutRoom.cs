@@ -12,8 +12,34 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
 {
     public abstract class LayoutRoom
     {
-        public LayoutRoom parent = null;
-        public DungeonRoom dungeonRoom;
+        public readonly DungeonRoom dungeonRoom;
+
+        public int treeDepth
+        {
+            get; private set;
+        }
+
+        public LayoutRoom parent
+        {
+            get { return internalParent; }
+
+            set
+            {
+                //Set the parent
+                internalParent = value;
+
+                //Update the tree depth
+                if (parent == null)
+                {
+                    treeDepth = 0;
+                }
+                else
+                {
+                    treeDepth = parent.treeDepth + 1;
+                }
+            }
+        }
+        private LayoutRoom internalParent = null;
 
         public Vector localPosition = Vector.zero;
         public Vector position

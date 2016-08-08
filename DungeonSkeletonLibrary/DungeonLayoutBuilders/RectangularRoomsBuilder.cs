@@ -70,7 +70,7 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
                 bfsQueue.Enqueue(neighbor);
 
                 //Create the room
-                LayoutRoom neighborLayout = CreateLayoutRoom(neighbor);
+                RectangleLayoutRoom neighborLayout = CreateLayoutRoom(neighbor);
 
                 //TODO: Put the room adjacent to its parent.
                 //ExitDirection direction = roomScript.GetRandomExit(randGen);
@@ -78,13 +78,14 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
             }
         }
 
-        private LayoutRoom CreateLayoutRoom(DungeonRoom room)
+        private RectangleLayoutRoom CreateLayoutRoom(DungeonRoom room)
         {
             //Create the LayoutRoom
-            LayoutRoom layoutRoom = GetRoom(room);
+            RectangleLayoutRoom layoutRoom = GetRoom(room);
 
-            //Add it to the dictionary
+            //Add it to the dictionary and the DungeonLayout
             layoutRooms.Add(room, layoutRoom);
+            layout.AddRoom(layoutRoom);
 
             //Return it
             return layoutRoom;

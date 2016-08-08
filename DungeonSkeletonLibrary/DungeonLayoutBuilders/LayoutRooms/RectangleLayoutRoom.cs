@@ -52,6 +52,15 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.LayoutRooms
             childRoom.parent = this;
         }
 
+        public void AttachExcessChild(LayoutRoom childRoom)
+        {
+            //Attaches the child as an excess edge.
+            //Sets the child's parent to this
+
+            excessEdges.Add(childRoom);
+            childRoom.parent = this;
+        }
+
         public LayoutRoom GetExit(ExitDirection dir)
         {
             return directionalExits[dir];
@@ -98,6 +107,12 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.LayoutRooms
         protected override void OnChildParentChanged(LayoutRoom child, LayoutRoom newParent)
         {
             //Remove the child from the exits.
+
+            //If the parent was changed to the exact same thing, then nevermind.
+            if (newParent == this)
+            {
+                return;
+            }
 
             //Remove from excessEdges, if it's in there
             if (excessEdges.Contains(child))

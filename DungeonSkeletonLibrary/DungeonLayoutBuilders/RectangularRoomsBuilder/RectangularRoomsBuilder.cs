@@ -18,8 +18,10 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.RectangularRoomsBuilder
 
 
         //Private fields
-        
-        private Dictionary<DungeonRoom, LayoutRoom> layoutRooms = new Dictionary<DungeonRoom, LayoutRoom>();
+
+        private Random randGen;
+
+        private Dictionary<DungeonRoom, RectangleLayoutRoom> layoutRooms = new Dictionary<DungeonRoom, RectangleLayoutRoom>();
 
 
         //BFS fields
@@ -33,6 +35,10 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.RectangularRoomsBuilder
         public RectangularRoomsBuilder(Dungeon vagueDungeon, RectangularRoomProviderMethod GetRoom) : base(vagueDungeon)
         {
             this.GetRoom = GetRoom;
+
+            //Set the RNG
+            //TODO: Use the same seed that the dungeon was generated with
+            randGen = new Random(12345);
         }
 
 
@@ -63,7 +69,7 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.RectangularRoomsBuilder
         {
             //Get the element
             DungeonRoom room = bfsQueue.Dequeue();
-            LayoutRoom layoutRoom = layoutRooms[room];
+            RectangleLayoutRoom layoutRoom = layoutRooms[room];
 
             //Visit all neighboring rooms
             for (int i = 0; i < room.GetEdgeCount(); i++)
@@ -90,11 +96,36 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.RectangularRoomsBuilder
                 //Create the room
                 RectangleLayoutRoom neighborLayout = CreateLayoutRoom(neighbor);
 
-                //TODO: Put the room adjacent to its parent.
-                //CURRENT TASK: Getting a random, available exit from layoutRoom.
-                //ExitDirection direction = layoutRoom.GetRandomExit(randGen);
+                //Pick a random exit to put the new room at
+                ExitDirection direction = PickExit(neighborLayout, layoutRoom);
+
+                //If there was no available exit, put it as an excess room.  Else, attach it to the chosen exit.
+                if (direction == ExitDirection.notAssigned)
+                {
+                    layoutRoom.AttachChildRoom(neighborLayout, direction);
+                }
+                else
+                {
+                    layoutRoom.AttachExcessChild(neighborLayout);
+                }
+
+                //TODO: Place the room physically next to it.
                 //PlaceRoom(neighborLayout, roomScript, direction);
             }
+        }
+
+        private ExitDirection PickExit(LayoutRoom child, RectangleLayoutRoom parent)
+        {
+            //Picks a random, valid, and available exit from parent.  If no such exit exists, returns ExitDirection.notAssigned
+            
+            if (parent.availableExitCount == 0)
+            {
+                return ExitDirection.notAssigned;
+            }
+
+            //Pick a random room from the list
+            //TODO: Check if the exit is valid(IE: doesn't overlap other rooms)
+            return parent.GetAvailableExit(randGen.Next(parent.availableExitCount));
         }
 
         private RectangleLayoutRoom CreateLayoutRoom(DungeonRoom room)

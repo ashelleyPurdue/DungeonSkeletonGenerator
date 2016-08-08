@@ -91,5 +91,39 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.LayoutRooms
             //Returns the ith available exit.
             return availableExits[i];
         }
+
+
+        //Events
+
+        protected override void OnChildParentChanged(LayoutRoom child, LayoutRoom newParent)
+        {
+            //Remove the child from the exits.
+
+            //Remove from excessEdges, if it's in there
+            if (excessEdges.Contains(child))
+            {
+                excessEdges.Remove(child);
+                return;
+            }
+
+            //Remove from directionalExits
+            ExitDirection[] dirs = { ExitDirection.left, ExitDirection.right, ExitDirection.up, ExitDirection.down };
+            foreach (ExitDirection exit in dirs)
+            {
+                if (directionalExits[exit] == child)
+                {
+                    //Remove the child if it matches
+                    directionalExits[exit] = null;
+
+                    //Add it to the list of available exits
+                    availableExits.Add(exit);
+                    availableExits.Sort();
+                }
+            }
+
+            //We didn't find it in any of the exits, so throw an error.
+            throw new Exception("Removed child was not in any of the exits, or in the excessEdges list.");
+        }
+
     }
 }

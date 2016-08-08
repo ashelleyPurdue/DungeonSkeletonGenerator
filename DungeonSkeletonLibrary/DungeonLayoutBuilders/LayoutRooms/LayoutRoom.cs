@@ -25,10 +25,11 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.LayoutRooms
             set
             {
                 //Set the parent
+                LayoutRoom oldParent = internalParent;
                 internalParent = value;
 
                 //Update the tree depth
-                if (parent == null)
+                if (internalParent == null)
                 {
                     treeDepth = 0;
                 }
@@ -36,6 +37,9 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.LayoutRooms
                 {
                     treeDepth = parent.treeDepth + 1;
                 }
+
+                //Set off the event.
+                oldParent.OnChildParentChanged(this, internalParent);
             }
         }
         private LayoutRoom internalParent = null;
@@ -62,6 +66,14 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.LayoutRooms
         public LayoutRoom(DungeonRoom dungeonRoom)
         {
             this.dungeonRoom = dungeonRoom;
+        }
+
+
+        //Events
+
+        protected virtual void OnChildParentChanged(LayoutRoom child, LayoutRoom newParent)
+        {
+            //Do nothing.  A subclass can implement this.
         }
     }
 }

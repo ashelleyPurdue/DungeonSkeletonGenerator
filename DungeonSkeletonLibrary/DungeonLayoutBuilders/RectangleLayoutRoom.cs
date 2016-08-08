@@ -16,6 +16,5 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
         {
             this.size = size;
         }
-
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 using DungeonSkeletonLibrary.Utils;
 using DungeonSkeletonLibrary.VagueDungeons;
 using DungeonSkeletonLibrary.DungeonLayoutBuilder.LayoutRooms;
+using DungeonSkeletonLibrary.DungeonLayoutBuilders.RectangularRoomsBuilder;
 
 namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.RectangularRoomsBuilder
 {
@@ -90,7 +91,8 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.RectangularRoomsBuilder
                 RectangleLayoutRoom neighborLayout = CreateLayoutRoom(neighbor);
 
                 //TODO: Put the room adjacent to its parent.
-                //ExitDirection direction = roomScript.GetRandomExit(randGen);
+                //CURRENT TASK: Getting a random, available exit from layoutRoom.
+                //ExitDirection direction = layoutRoom.GetRandomExit(randGen);
                 //PlaceRoom(neighborLayout, roomScript, direction);
             }
         }

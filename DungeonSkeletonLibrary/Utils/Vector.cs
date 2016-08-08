@@ -43,6 +43,11 @@ namespace DungeonSkeletonLibrary.Utils
             return new Vector(a.x * b, a.y * b, a.z * b);
         }
 
+        public static Vector operator *(double a, Vector b)
+        {
+            return b * a;
+        }
+
         public static Vector operator /(Vector a, double b)
         {
             return a * (1.0 / b);

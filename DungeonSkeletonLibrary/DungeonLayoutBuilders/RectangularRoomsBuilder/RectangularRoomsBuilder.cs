@@ -109,8 +109,8 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.RectangularRoomsBuilder
                     layoutRoom.AttachExcessChild(neighborLayout);
                 }
 
-                //TODO: Place the room physically next to it.
-                //PlaceRoom(neighborLayout, roomScript, direction);
+                //Place the room physically next to it.
+                PlaceRoom(neighborLayout, layoutRoom, direction);
             }
         }
 
@@ -126,6 +126,30 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.RectangularRoomsBuilder
             //Pick a random room from the list
             //TODO: Check if the exit is valid(IE: doesn't overlap other rooms)
             return parent.GetAvailableExit(randGen.Next(parent.availableExitCount));
+        }
+
+        private void PlaceRoom(RectangleLayoutRoom child, RectangleLayoutRoom parent, ExitDirection direction)
+        {
+            const double paddingDistance = 0.1;
+
+            //Get the direciton vector
+            Vector dir = ExitDirectionMethods.ExitVector(direction);
+
+            //Get the distance to move it
+            double dist = 0;
+            if (direction == ExitDirection.left || direction == ExitDirection.right)
+            {
+                dist = parent.size.x + child.size.x;
+            }
+            else if (direction == ExitDirection.up || direction == ExitDirection.down)
+            {
+                dist = parent.size.y + child.size.y;
+            }
+            dist /= 2;
+            dist += paddingDistance;
+
+            //Put it in the right spot
+            child.localPosition = dist * dir;
         }
 
         private RectangleLayoutRoom CreateLayoutRoom(DungeonRoom room)

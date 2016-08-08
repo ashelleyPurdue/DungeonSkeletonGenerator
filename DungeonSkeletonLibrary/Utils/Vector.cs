@@ -7,11 +7,19 @@ namespace DungeonSkeletonLibrary.Utils
 {
     public struct Vector
     {
-        public static Vector zero = new Vector(0, 0, 0);
+        //Constants
+        public static readonly Vector zero  = new Vector(0, 0, 0);
+        public static readonly Vector left  = new Vector(-1, 0, 0);
+        public static readonly Vector right = new Vector(1, 0, 0);
+        public static readonly Vector up    = new Vector(0, 1, 0);
+        public static readonly Vector down  = new Vector(0, -1, 0);
         
-        double x;
-        double y;
-        double z;
+
+        //---
+
+        public double x;
+        public double y;
+        public double z;
 
         public Vector(double x, double y, double z)
         {

@@ -13,6 +13,8 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
         public delegate RectangleLayoutRoom RectangularRoomProviderMethod(DungeonRoom dngRoom);
         private RectangularRoomProviderMethod GetRoom;
 
+        private Dictionary<DungeonRoom, LayoutRoom> layoutRooms = new Dictionary<DungeonRoom, LayoutRoom>();
+
         private DefaultDictionary<DungeonRoom, bool> visited = new DefaultDictionary<DungeonRoom, bool>(false);
         private Queue<DungeonRoom> bfsQueue = new Queue<DungeonRoom>();
 
@@ -26,17 +28,66 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
             //TODO: Build the dungeon.
 
             //Start the BFS
-            RectangleLayoutRoom startRoom = GetRoom(vagueDungeon.startRoom);
-            visited[vagueDungeon.startRoom] = true;
-            bfsQueue.Enqueue(vagueDungeon.startRoom);
+            RectangleLayoutRoom startRoom = GetRoom(dungeon.startRoom);
+            visited[dungeon.startRoom] = true;
+            bfsQueue.Enqueue(dungeon.startRoom);
 
             //Use breadth first search to lay out every room.
             while (bfsQueue.Count > 0)
             {
-                //TODO: Advance the BFS
+                AdvanceBFS();
+            }
+
+            //TODO: Prevent colliding rooms
+        }
+
+        private void AdvanceBFS()
+        {
+            //Get the element
+            DungeonRoom room = bfsQueue.Dequeue();
+            LayoutRoom layoutRoom = layoutRooms[room];
+
+            //Visit all neighboring rooms
+            for (int i = 0; i < room.GetEdgeCount(); i++)
+            {
+                DungeonEdge edge = room.GetEdge(i);
+
+                //Get the neighbor room
+                DungeonRoom neighbor = edge.to;
+                if (neighbor == room)
+                {
+                    neighbor = edge.from;
+                }
+
+                //Skip this room if it's already visited
+                if (visited[neighbor])
+                {
+                    continue;
+                }
+
+                //Visit the neighbor
+                visited[neighbor] = true;
+                bfsQueue.Enqueue(neighbor);
+
+                //Create the room
+                LayoutRoom neighborLayout = CreateLayoutRoom(neighbor);
+
+                //TODO: Put the room adjacent to its parent.
+                //ExitDirection direction = roomScript.GetRandomExit(randGen);
+                //PlaceRoom(neighborLayout, roomScript, direction);
             }
         }
 
+        private LayoutRoom CreateLayoutRoom(DungeonRoom room)
+        {
+            //Create the LayoutRoom
+            LayoutRoom layoutRoom = GetRoom(room);
 
+            //Add it to the dictionary
+            layoutRooms.Add(room, layoutRoom);
+
+            //Return it
+            return layoutRoom;
+        }
     }
 }

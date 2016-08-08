@@ -9,14 +9,14 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
 {
     public abstract class AbstractLayoutBuilder
     {
-        public readonly Dungeon vagueDungeon;
+        public readonly Dungeon dungeon;
         public bool doneBuilding { get; private set; }
 
         protected DungeonLayout layout = new DungeonLayout();
 
         public AbstractLayoutBuilder(Dungeon vagueDungeon)
         {
-            this.vagueDungeon = vagueDungeon;
+            this.dungeon = vagueDungeon;
             doneBuilding = false;
         }
 

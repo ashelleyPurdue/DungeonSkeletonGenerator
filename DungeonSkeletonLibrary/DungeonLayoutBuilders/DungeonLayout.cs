@@ -5,7 +5,8 @@ using System.Text;
 
 namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
 {
-    class DungeonLayout
+    public class DungeonLayout
     {
+        //TODO: Store things related to the dungeon layout
     }
 }

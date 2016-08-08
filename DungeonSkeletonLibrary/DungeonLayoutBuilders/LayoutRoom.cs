@@ -8,7 +8,7 @@ using DungeonSkeletonLibrary.VagueDungeons;
 
 namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
 {
-    public class LayoutRoom
+    public abstract class LayoutRoom
     {
         public LayoutRoom parent = null;
         public DungeonRoom dungeonRoom;
@@ -28,8 +28,6 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilders
                 }
             }
         }
-
-        public Vector size = Vector.zero;
 
         public LayoutRoom(DungeonRoom dungeonRoom)
         {

@@ -28,6 +28,15 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.LayoutRooms
         public RectangleLayoutRoom(DungeonRoom dungeonRoom, Vector size) : base(dungeonRoom)
         {
             this.size = size;
+
+            //Populate availableExits
+            ExitDirection[] exits = new ExitDirection[] { ExitDirection.left, ExitDirection.right, ExitDirection.up, ExitDirection.down };
+            foreach (ExitDirection e in exits)
+            {
+                availableExits.Add(e);
+            }
+
+            availableExits.Sort();
         }
 
 

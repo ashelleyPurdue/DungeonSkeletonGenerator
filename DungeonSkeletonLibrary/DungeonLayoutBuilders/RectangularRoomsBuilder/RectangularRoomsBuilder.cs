@@ -49,7 +49,7 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.RectangularRoomsBuilder
             //TODO: Build the dungeon.
 
             //Start the BFS
-            RectangleLayoutRoom startRoom = GetRoom(dungeon.startRoom);
+            RectangleLayoutRoom startRoom = CreateLayoutRoom(dungeon.startRoom);
             visited[dungeon.startRoom] = true;
             bfsQueue.Enqueue(dungeon.startRoom);
 

@@ -39,7 +39,10 @@ namespace DungeonSkeletonLibrary.DungeonLayoutBuilder.LayoutRooms
                 }
 
                 //Set off the event.
-                oldParent.OnChildParentChanged(this, internalParent);
+                if (oldParent != null)
+                {
+                    oldParent.OnChildParentChanged(this, internalParent);
+                }
             }
         }
         private LayoutRoom internalParent = null;
